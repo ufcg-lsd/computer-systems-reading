@@ -1,2 +1,2 @@
 # serverless-reading
-A list of relevante Serverless computing papers; commented.
+A list of relevant Serverless computing papers.
