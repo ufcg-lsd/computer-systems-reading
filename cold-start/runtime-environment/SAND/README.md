@@ -35,6 +35,9 @@ Avaliação 2:
 
 Em teoria seria esperado que a utilização de memória do SAND fosse maior do que as soluções do OpenWhisk, sempre que o container é levantado o código da função já é carregado, porém, com o aumento da utilização das funções o OpenWhisk precisa alocar e manter uma poll de containers aumentando significativamente o uso de memória.
 
+## Contribuição
+O SAND tenta resolver o problema da etapa 3 no container, ou seja, não é necessário que o provedor da *cloud* gerencie nenhum tipo de serviço de provisionamento.
+
 ## Críticas
 O artigo teve bons resultados de diminuição de cold start, mas talvez as comparações que eles fizeram com outras plataformas não foram justas pelo fato do SAND não se preocupar com a elasticidade, mas as plataformas comparadas sim (overhead da orquestração de containers).
 
