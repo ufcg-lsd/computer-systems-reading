@@ -4,6 +4,8 @@
 
 This paper presents SAND, a new serverless computing system that provides lower latency, better resource efficiency and more elasticity than existing serverless platforms. To achieve these properties, SAND introduces two key techniques: 1) application-level sandboxing, and 2) a hierarchical message bus. We have implemented and deployed a complete SAND system. Our results show that SAND outperforms the state-of-the-art serverless platforms significantly. For example, in a commonly-used image processing application, SAND achieves a 43% speedup compared to Apache OpenWhisk.
 
+**Categoria: System proposal, Cold Start, Runtime Environment.**
+
 ## Problema
 Endereça o problema de cold-start e como as plataformas comerciais fizeram para mitigar: utilizando uma pool de containers quentes, porém a solução desperdiça recursos.
 
