@@ -26,14 +26,14 @@ A segunda avaliação foi em um cenário de um pipeline para o processamento de 
 
 Nesta segunda avaliação não foi possível ter resultados de comparações confiáveis com outras plataformas como AWS Step Functions e IBM Cloud Functions pelo fato da infraestrutura ser naturalmente diferente, o SAND e OpenWhisk foram avaliados na mesma infraestrutura local.
 
+Em teoria seria esperado que a utilização de memória do SAND fosse maior do que as soluções do OpenWhisk, sempre que o container é levantado o código da função já é carregado, porém, com o aumento da utilização das funções o OpenWhisk precisa alocar e manter uma poll de containers aumentando significativamente o uso de memória.
+
 ## Críticas
-O artigo teve bons resultados de diminuição de cold start, mas talvez a comparação que eles fizeram com outras plataformas não foram justas pelo fato do SAND não se preocupar com a elasticidade, mas as plataformas comparadas sim.
+O artigo teve bons resultados de diminuição de cold start, mas talvez a comparação que eles fizeram com outras plataformas não foram justas pelo fato do SAND não se preocupar com a elasticidade, mas as plataformas comparadas sim (overhead da orquestração de containers).
     
 Os resultados do SAND são bons pelo fato de eliminar a etapa 3 do cold start, contudo, SAND possui um suporte limitado à linguagens:
 
 - "Non-fork Runtime Support. SAND makes a trade-off to balance performance and isolation by using process forking for function executions. The downside is that SAND currently does not support language runtimes without native forking (e.g., Java and NodeJS)".
-    
-Em teoria seria esperado que a utilização de memória do SAND fosse maior do que as soluções do OpenWhisk, sempre que o container é levantado o código da função já é carregado, porém, com o aumento da utilização das funções o OpenWhisk precisa alocar e manter uma poll de containers aumentando significativamente o uso de memória.
     
 O trade-off do SAND é que quando a carga for grande, um container talvez não tenha recursos suficientes para computar bem todas as funções, por exemplo, gargalo de CPU.
 
