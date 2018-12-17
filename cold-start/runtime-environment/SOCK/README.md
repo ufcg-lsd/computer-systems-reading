@@ -7,18 +7,41 @@ Serverless computing promises to provide applications with cost savings and extr
 **Categoria: System proposal, Cold Start, Runtime Environment.**
 
 ## Problema
-Foca no problema de [Cold Start](../../README.md) para as etapas 2 e 3.
+Foca no problema de [Cold Start](../../README.md) para as [etapas 2 e 3](../../README.md).
+
+O problema da etapa 2 é justificado com a análise da escalabilidade das operações necessárias para criação de containers como:
+1. Modificação de namespaces
+  - **IPC**: Foi observado que possui uma latência “inofensiva” e a operação não se degrada com o aumento de uso concorrente.
+
+  - **Mounts**: Foi observado que possui uma latência “inofensiva” e a operação não se degrada com o aumento de uso concorrente.
+
+  - **Network**: Foi observado que a latência da operação de criação do namespace se degrada à medida que o uso concorrente aumenta.
+
+2. Isolamento do sistema de arquivos
+  - Duas estratégias foram comparadas:
+    1. **AUFS**:
+      - Possui um bom desempenho e a performance não se degrada à medida que o número usuários concorrentes aumenta.
+    2. **Bind**:
+      - Possui um bom desempenho e a performance não se degrada à medida que o número usuários concorrentes aumenta.
+      - Normalmente 2 vezes mais rápido do que o AUFS.
+
+3. Criação de cgroups
+  - Não sofre com problemas de escalabilidade, porém o reuso favorece o aumento da quantidade de operações por segundo.
 
 O problema da etapa 3 é justificado com a análise do tempo para médio para importar os pacotes de Python mais populares no repositório PyPI. O valor do tempo médio para o *import* é de 100ms, se uma aplicação *serverless* utiliza vários pacotes com o objetivo de realizar o reuso de código, então o tempo para começar a responder à uma requisição pode ser longo.
 
+
 ## Solução
-O artigo tem como foco principal construir uma solução de *containerização* focada em aplicações *serverless* e um provisionador focado em uma utilização eficiente dos códigos de bibliotecas entre processos de funções.
+O artigo tem como foco principal construir uma solução de *containerização* focada em aplicações *serverless* e um provisionador focado na utilização eficiente dos códigos de bibliotecas entre processos de funções.
 
-A ideia do SAND é que cada função deployed tenha seu sandbox, que é um container, e o container poderá executar quantas funções for possível, basicamente funciona como o OpenFaaS.
+Para diminuir o tempo de *Cold Start* da **etapa 2** foi criada uma solução de containerização com as seguintes melhorias:
+  1. SOCK utiliza *Bind Mounts* ao invés do AUFS para montar o sistema de arquivos, além disso, utiliza operações de */chroot* mais simples e eficientes.
 
-Para mitigar o problema de Cold Start, quando o container da função é levantado, é criado um grain worker que carrega o código da função e escuta as mensagens que chegam no message bus para processá-las.
+  2. SOCK faz a reutilização de *cgroups* e não aplica o *unshare* dos *namespaces* de *mount* e *network*.
 
-Assim, quando uma requisição chega o código já está carregado e grain worker se clona para criar uma grain instance e executar o código da função.
+Para diminuir o tempo de *Cold Start* da **etapa 3** foi um sistema de provisionamento [TODO](explicar melhor como funciona):
+  - Ideia do Zygote utilizado no Android para aplicações Java, que era utilizar cache para os pacotes mais utilizados, e dessa forma as aplicações fazem copy-on-write dos pacotes das bibliotecas, eliminando a necessidade de carregar os pacotes do disco e a duplicação de memória.
+
 
 ## Avaliação e Resultados
 Foram realizadas duas avaliações de desempenho comparando a performance de cold e warm start do SAND com o OpenWhisk e AWS Greengrass.
