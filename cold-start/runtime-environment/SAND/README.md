@@ -7,9 +7,9 @@ This paper presents SAND, a new serverless computing system that provides lower 
 **Categoria: System proposal, Cold Start, Runtime Environment.**
 
 ## Problema
-Endereça o problema de cold-start e como as plataformas comerciais fizeram para mitigar: utilizando uma pool de containers quentes, porém a solução desperdiça recursos.
+Endereça o problema do [Cold Start](../../README.md) e como as plataformas comerciais fizeram para mitigar: utilizando uma pool de containers quentes, porém a solução desperdiça recursos.
 
-O artigo tem como foco principal construir uma plataforma serverless que reduz os desperdício de recursos (o cold-start). Além disso, tenta mitigar o problema de encadeamento de chamada de funções.
+O artigo tem como foco principal construir uma plataforma serverless que reduz o desperdício de recursos e o cold-start. Além disso, tenta mitigar o problema de encadeamento de chamada de funções.
 
 ## Solução
 A ideia do SAND é que cada função deployed tenha seu sandbox, que é um container, e o container poderá executar quantas funções for possível, basicamente funciona como o OpenFaaS.
@@ -38,7 +38,7 @@ Avaliação 2:
 Em teoria seria esperado que a utilização de memória do SAND fosse maior do que as soluções do OpenWhisk, sempre que o container é levantado o código da função já é carregado, porém, com o aumento da utilização das funções o OpenWhisk precisa alocar e manter uma poll de containers aumentando significativamente o uso de memória.
 
 ## Contribuição
-O SAND tenta resolver o problema da etapa 3 no container, ou seja, não é necessário que o provedor da *cloud* gerencie nenhum tipo de serviço de provisionamento.
+O SAND tenta resolver o problema da [etapa 3](../../README.md) no container, ou seja, não é necessário que o provedor da *cloud* gerencie nenhum tipo de serviço de provisionamento.
 
 ## Críticas
 O artigo teve bons resultados de diminuição de cold start, mas talvez as comparações que eles fizeram com outras plataformas não foram justas pelo fato do SAND não se preocupar com a elasticidade, mas as plataformas comparadas sim (overhead da orquestração de containers).
