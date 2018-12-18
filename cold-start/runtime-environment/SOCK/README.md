@@ -4,6 +4,8 @@
 
 Serverless computing promises to provide applications with cost savings and extreme elasticity. Unfortunately, slow application and container initialization can hurt common-case latency on serverless platforms. In this work, we analyze Linux container primitives, identifying scalability bottlenecks related to storage and network isolation.
 
+O SOCK foi integrado à plataforma OpenLambda para a geração de resultados.
+
 **Categoria: System proposal, Cold Start, Runtime Environment.**
 
 ## Problema
@@ -39,38 +41,51 @@ Para diminuir o tempo de *Cold Start* da **etapa 2** foi criada uma solução de
 
   2. SOCK faz a reutilização de *cgroups* e não aplica o *unshare* dos *namespaces* de *mount* e *network*.
 
-Para diminuir o tempo de *Cold Start* da **etapa 3** foi um sistema de provisionamento [TODO](explicar melhor como funciona):
+Para diminuir o tempo de *Cold Start* da **etapa 3** foi criado um sistema de provisionamento que pré-importa as bibliotecas mais utilizadas pelas aplicações:
   - Ideia do Zygote utilizado no Android para aplicações Java, que era utilizar cache para os pacotes mais utilizados, e dessa forma as aplicações fazem copy-on-write dos pacotes das bibliotecas, eliminando a necessidade de carregar os pacotes do disco e a duplicação de memória.
+  - Os processos das funções são filhos dos processos do Zygote que já possui algumas bibliotecas pre-importadas.
 
 
 ## Avaliação e Resultados
-Foram realizadas duas avaliações de desempenho comparando a performance de cold e warm start do SAND com o OpenWhisk e AWS Greengrass.
+O objetivo da avaliação é responder 4 perguntas:
+  1. *What speedups do SOCK containers provide OpenLambda*?
+  2. *Does built-in package support reduce cold-start latency for applications with dependencies*?
+  3. *How does SOCK scale with the number of lambdas and packages*?
+  4. *How does SOCK compare to other platforms for a real workload*?
 
 Avaliação 1:
-- **Metodologia**: duas funções em Python *F1* e *F2* em que *F1* chama *F2*.
-- **Métrica**: *F2* startup timestamp - *F1* end of execution timestamp.
-- **Cenários**: ***Cold*** (quando as funções não possuiam nenhum container em estado *warm*) e ***Warm*** (quando as funções possuiam containers em estado *warm*).
-- **Resultados**: ***Warm*** SAND outperforms OpenWhisk and Greengrass, both with warm containers, by 8.32× and 3.64×. ***Cold*** SAND’s speedups are 562× and 358× compared to OpenWhisk and Greengrass with cold containers.
-- **Crítica**: a comparação do cenário ***Cold*** do SAND com o AWS Greengrass e OpenWhisk não é justa pelo fato do SAND não realizar o escalonamento de *containers*.
+- **Metodologia**: comparar o tempo de *startup* do *container* do SOCK e Docker com 1, 10 e 20 chamadas concorrentes.
+- **Métrica**: *container startup time*.
+- **Resultados**: no cenário com 1 usuário concorrente o SOCK é pelo menos 6x mais rápido do que o Docker. Por outro lado, com 10 usuários concorrentes o SOCK é 18x mais rápido do que o Docker.
 
 Avaliação 2:
-- **Metodologia**: um *pipeline* de processamento de imagem com 4 funções consecutivas em Python.
-- **Métrica**: cada função computava seu tempo de execução, então duas métricas são calculadas, o tempo total para executar o pipeline (TT) e tempo de computação (TC) das 4 funções. TT - TC pode ser usado como uma estimativa do preço do *cold start*.
-- **Cenários**: Comparação dos resultados do SAND com AWS Step Functions, IBM Cloud Functions e OpenWhisk.
-- **Resultados**: Compared to other platforms, we find that SAND achieves the lowest overhead for running a series of functions. For example, SAND reduces the overhead by 22.0× compared to OpenWhisk, even after removing the time spent on extra functionality not supported in SAND yet (e.g., authentication and authorization). We notice that OpenWhisk re-launches the Python interpreter for each function invocation, so that libraries are loaded before a request can be handled. In contrast, SAND’s grain worker loads a function’s libraries only once, which are then shared across forked grain instances handling the requests.
-- **Crítica**: Apesar de apresentar o melhor resultado, não é possível ter uma comparação confiável com outras plataformas como AWS Step Functions e IBM Cloud Functions pelo fato da infraestrutura ser naturalmente diferente, o SAND e OpenWhisk foram avaliados na mesma infraestrutura local.
+- **Metodologia**: .
+- **Métrica**: .
+- **Cenários**: .
+- **Resultados**: .
+- **Crítica**: .
 
-Em teoria seria esperado que a utilização de memória do SAND fosse maior do que as soluções do OpenWhisk, sempre que o container é levantado o código da função já é carregado, porém, com o aumento da utilização das funções o OpenWhisk precisa alocar e manter uma poll de containers aumentando significativamente o uso de memória.
+Avaliação 3:
+- **Metodologia**: .
+- **Métrica**: .
+- **Cenários**: .
+- **Resultados**: .
+- **Crítica**: .
+
+Avaliação 4:
+- **Metodologia**: avaliação do tempo de *cold start* utilizando uma aplicação em Python que muda o tamanho de uma imagem. Para garantir o cenário de *cold start* as requisições eram realizadas após a modificação do código na plataforma.
+- **Métrica**: latência das requisições, assim como o tempo de computação da função.
+- **Cenários**: comparação com AWS Lambda e OpenWhisk com uma função de tamanho 8.3MB levando em consideração suas dependências.
+- **Resultados**: “SOCK cold” has a platform latency of 365 ms, 2.8× faster than AWS Lambda and 5.3× faster than OpenWhisk. “SOCK cold” compute time is also shorter than the other compute times because all package initialization happens after the handler starts running for the other platforms, but SOCK performs package initialization work as part of the platform.
 
 ## Contribuição
-O SAND tenta resolver o problema da [etapa 3](../../README.md) no container, ou seja, não é necessário que o provedor da *cloud* gerencie nenhum tipo de serviço de provisionamento.
+A principal contribuição do *SOCK* é tentar resolver o problema de *cold start* na etapa 3 utilizando mecanismos de provisionamento para gerenciar a utilização das bibliotecas pelas funções, ou seja, o *SOCK* tenta manter em *cache* as bibliotecas mais utilizadas pelas funções para que não seja necessário reimportar as bibliotecas.
 
 ## Críticas
-O artigo teve bons resultados de diminuição de cold start, mas talvez as comparações que eles fizeram com outras plataformas não foram justas pelo fato do SAND não se preocupar com a elasticidade, mas as plataformas comparadas sim (overhead da orquestração de containers).
+Os resultados do *SOCK* são muito bons, pois, diminui o custo da etapa 2 e 3, porém, 
 
-Os resultados do SAND são bons pelo fato de eliminar a etapa 3 do cold start, contudo, SAND possui um suporte limitado à linguagens:
 
-- "Non-fork Runtime Support. SAND makes a trade-off to balance performance and isolation by using process forking for function executions. The downside is that SAND currently does not support language runtimes without native forking (e.g., Java and NodeJS)".
+- "We further generalize Zygote provisioning and build a package-aware caching system.".
 
 Além disso, um trade-off do SAND é que quando a carga for grande, um container talvez não tenha recursos suficientes para computar bem todas as funções, por exemplo, gargalo de CPU.
 
