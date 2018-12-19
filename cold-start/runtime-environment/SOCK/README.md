@@ -79,18 +79,17 @@ Avaliação 4:
 - **Resultados**: “SOCK cold” has a platform latency of 365 ms, 2.8× faster than AWS Lambda and 5.3× faster than OpenWhisk. “SOCK cold” compute time is also shorter than the other compute times because all package initialization happens after the handler starts running for the other platforms, but SOCK performs package initialization work as part of the platform.
 
 ## Contribuição
-A principal contribuição do *SOCK* é tentar resolver o problema de *cold start* na etapa 3 utilizando mecanismos de provisionamento para gerenciar a utilização das bibliotecas pelas funções, ou seja, o *SOCK* tenta manter em *cache* as bibliotecas mais utilizadas pelas funções para que não seja necessário reimportar as bibliotecas.
+A principal contribuição do *SOCK* é tentar resolver o problema de *cold start* na etapa 3 utilizando mecanismos de provisionamento para gerenciar a utilização das bibliotecas pelas funções, ou seja, o *SOCK* tenta manter em *cache* as bibliotecas mais utilizadas pelas funções para que não seja necessário reimportá-las.
 
 ## Críticas
-Os resultados do *SOCK* são muito bons, pois, diminui o custo da etapa 2 e 3, porém, 
-
+Os resultados do *SOCK* são muito bons, pois, diminui o custo da etapa 2 e 3, porém, aparentemente para cada linguagem é necessário implementar o serviço de provisionamento específico.
 
 - "We further generalize Zygote provisioning and build a package-aware caching system.".
 
-Além disso, um trade-off do SAND é que quando a carga for grande, um container talvez não tenha recursos suficientes para computar bem todas as funções, por exemplo, gargalo de CPU.
+É necessário que o provedor da plataforma gerencie um serviço de provisionamento do Zygote.
 
 ## Relacionados
-1. [Slacker: Fast distribution with lazy docker containers] identifies packages that are critical when launching a container.
-2. [Cloud event programming paradigms: Applications and analysis] investigated latencies in existing serverless frameworks.
+1. [Pipsqueak: Lean Lambdas with Large Libraries] SOCK implements and extends the earlier Pipsqueak proposal for efficient package initialization.
+2. [Unikernels: Library Operating Systems for the Cloud] Recent alternatives to traditional containerization are based on library operating systems, enclaves, and unikernels.
 3. [SOCK: Rapid task provisioning with serverless-optimized containers] create a cache of pre-warmed Python interpreters, so that functions can be launched with an interpreter that has already loaded the necessary libraries.
 4. [Serverless computing: Design, implementation, and performance] proposed a queuing scheme with workers announcing their availability in warm and cold queues, where containers can be reused and new containers can be created, respectively
