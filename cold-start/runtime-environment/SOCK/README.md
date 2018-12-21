@@ -91,5 +91,5 @@ Os resultados do *SOCK* são muito bons, pois, diminui o custo da etapa 2 e 3, p
 ## Relacionados
 1. [Pipsqueak: Lean Lambdas with Large Libraries] SOCK implements and extends the earlier Pipsqueak proposal for efficient package initialization.
 2. [Unikernels: Library Operating Systems for the Cloud] Recent alternatives to traditional containerization are based on library operating systems, enclaves, and unikernels.
-3. [SOCK: Rapid task provisioning with serverless-optimized containers] create a cache of pre-warmed Python interpreters, so that functions can be launched with an interpreter that has already loaded the necessary libraries.
-4. [Serverless computing: Design, implementation, and performance] proposed a queuing scheme with workers announcing their availability in warm and cold queues, where containers can be reused and new containers can be created, respectively
+3. [Rethinking the Library OS from the Top Down] Recent alternatives to traditional containerization are based on library operating systems, enclaves, and unikernels.
+4. [From Zygote to Morula: Fortifying Weakened ASLR on Android] observed that forking many child processes from the same parent without calling exec undermines address-space randomization; their solution was Morula, a system that runs exec every time, but maintains a pool of preinitialized interpreters; this approach trades overall system throughput for randomization.
