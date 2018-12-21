@@ -34,14 +34,14 @@ O problema da etapa 3 é justificado com a análise do tempo para médio para im
 
 
 ## Solução
-O artigo tem como foco principal construir uma solução de *containerização* focada em aplicações *serverless* e um provisionador focado na utilização eficiente dos códigos de bibliotecas entre processos de funções.
+O artigo tem como foco principal construir uma solução de *containerização* focada em aplicações *serverless* e um provisionador focado no carregamento proativo das bibliotecas mais utilizadas entre aplicações.
 
 Para diminuir o tempo de *Cold Start* da **etapa 2** foi criada uma solução de containerização com as seguintes melhorias:
   1. SOCK utiliza *Bind Mounts* ao invés do AUFS para montar o sistema de arquivos, além disso, utiliza operações de */chroot* mais simples e eficientes.
 
   2. SOCK faz a reutilização de *cgroups* e não aplica o *unshare* dos *namespaces* de *mount* e *network*.
 
-Para diminuir o tempo de *Cold Start* da **etapa 3** foi criado um sistema de provisionamento que pré-importa as bibliotecas mais utilizadas pelas aplicações:
+Para diminuir o tempo de *Cold Start* da **etapa 3** foi criado um sistema de provisionamento que pré-importa as bibliotecas de Python mais utilizadas pelas aplicações:
   - Ideia do Zygote utilizado no Android para aplicações Java, que era utilizar cache para os pacotes mais utilizados, e dessa forma as aplicações fazem copy-on-write dos pacotes das bibliotecas, eliminando a necessidade de carregar os pacotes do disco e a duplicação de memória.
   - Os processos das funções são filhos dos processos do Zygote que já possui algumas bibliotecas pre-importadas.
 
@@ -75,7 +75,7 @@ Avaliação 3:
 Avaliação 4:
 - **Metodologia**: avaliação do tempo de *cold start* utilizando uma aplicação em Python que muda o tamanho de uma imagem. Para garantir o cenário de *cold start* as requisições eram realizadas após a modificação do código na plataforma.
 - **Métrica**: latência das requisições, assim como o tempo de computação da função.
-- **Cenários**: comparação com AWS Lambda e OpenWhisk com uma função de tamanho 8.3MB levando em consideração suas dependências.
+- **Cenários**: comparação com AWS Lambda e OpenWhisk com uma função de tamanho 8.3MB (aplicação + dependências) levando em consideração suas dependências.
 - **Resultados**: “SOCK cold” has a platform latency of 365 ms, 2.8× faster than AWS Lambda and 5.3× faster than OpenWhisk. “SOCK cold” compute time is also shorter than the other compute times because all package initialization happens after the handler starts running for the other platforms, but SOCK performs package initialization work as part of the platform.
 
 ## Contribuição
