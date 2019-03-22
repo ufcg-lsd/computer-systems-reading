@@ -13,7 +13,7 @@ Os experimentos executados compararam três plataformas de computação serverle
 
 Experimento 1:
 - **Visão geral**: 5 Execuções com envio de 100.000 requisições sob diferente número de usuários concorrentes com auto scaling desligado.
-- **Função**: Uma função de eco, que apenas retorna o valor de entrada.  
+- **Função**: Uma função de eco, que apenas retorna o valor de entrada. A string utilizada no experimento não foi mencionada.  
 - **Métrica**: Tempo de resposta, taxa de sucesso.
 - **Fator**: Número de usuários concorrentes - 1, 5, 10, 20, 50, 100. Número de réplicas da função - 1, 25, 50 (executando em 3 workers distintos)
 - **Resultados**: Fission possui a menor mediana de tempo de resposta (2ms) em todos os casos. Kubeless e OpenFaaS mantém a mediana de tempo de resposta abaixo de 80ms. É observado que não há mudança significativa a medida que o número de réplicas é alterado. Exceto para o Kubeless, que com 50 réplicas e 100 usuários concorrentes obteve tempo de resposta menor em 10ms. O Fission possui significativamente  mais outliers que as demais plataformas e esses outliers também possuem maior valor de tempo de serviço. Por fim, a taxa de sucesso para todos os casos foi de 100% para o Kubeless e de 99% para o Fission. O OpenFaaS obteve taxa de sucesso acima de 98% ou menor quando tinha-se 50 ou mais requisições concorrentes. 
