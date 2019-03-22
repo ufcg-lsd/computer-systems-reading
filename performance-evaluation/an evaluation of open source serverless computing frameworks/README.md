@@ -15,19 +15,19 @@ Os experimentos executados compararam três plataformas de computação serverle
 - **Visão geral**: 5 Execuções com envio de 100.000 requisições sob diferente número de usuários concorrentes com auto scaling desligado.
 - **Função**: Uma função de eco, que apenas retorna o valor de entrada. A string utilizada no experimento não foi mencionada.  
 - **Métrica**: Tempo de resposta, taxa de sucesso.
-- **Fator**: Número de usuários concorrentes - 1, 5, 10, 20, 50, 100. Número de réplicas da função - 1, 25, 50 (executando em 3 workers distintos)
-- **Resultados**: Fission possui a menor mediana de tempo de resposta (2ms) em todos os casos. Kubeless e OpenFaaS mantém a mediana de tempo de resposta abaixo de 80ms. É observado que não há mudança significativa a medida que o número de réplicas é alterado. Exceto para o Kubeless, que com 50 réplicas e 100 usuários concorrentes obteve tempo de resposta menor em 10ms. O Fission possui significativamente  mais outliers que as demais plataformas e esses outliers também possuem maior valor de tempo de serviço. Por fim, a taxa de sucesso para todos os casos foi de 100% para o Kubeless e de 99% para o Fission. O OpenFaaS obteve taxa de sucesso acima de 98% ou menor quando tinha-se 50 ou mais requisições concorrentes. 
+- **Fator**: Número de usuários concorrentes - 1, 5, 10, 20, 50, 100. Número de réplicas da função - 1, 25, 50 (em 3 workers distintos que compôem o cluster kubernetes, em que cada um possuia 2vCPUs, 7.5GB RAM e executa o ContainerOptimized OS).
+- **Resultados**: Fission possui a menor mediana de tempo de resposta (2ms) em todos os casos. Kubeless e OpenFaaS mantém a mediana de tempo de resposta abaixo de 80ms. É observado que não há mudança significativa a medida que o número de réplicas é alterado. Exceto para o Kubeless, que com 50 réplicas e 100 usuários concorrentes obteve tempo de resposta menor em 10ms. O Fission possui significativamente  mais outliers que as demais plataformas (1.336 ao total) e esses outliers também possuem maior valor de tempo de serviço, variando entre 1 e 20 segundos. Por fim, a taxa de sucesso para todos os casos foi de 100% para o Kubeless e de 99% para o Fission. O OpenFaaS obteve taxa de sucesso acima de 98% ou menor quando tinha-se 50 ou mais requisições concorrentes. 
 - **Crítica**: Não explicou a razão pela qual o Fission obteve tempo de resposta tão pequeno, algo esperado visto o valor observado. Não garantiu (ou pelo menos não certificou) que as configurações utilizadas nos frameworks eram de fato justas pois o autor optou por utilizar configuração padrão ao máximo e não há garantia de que essas plataformas são utilizadas assim na prática.
 - **Graficos e Tabelas**: 
 ![exp1-plot](exp1-plot.png)
 
 **Experimento 2**:
 - **Visão geral**: 5 Execuções com envio de 10.000 requisições explorando o impacto do auto scaling a 50% do uso de CPU.
-- **Função**: Uma função que multiplica uma matriz 1000 por 1000.  
+- **Função**: Uma função implementada em Go que multiplica implementada em Go uma matriz 1000 por 1000.  
 - **Métrica**: Tempo de resposta, taxa de sucesso.
 - **Fator**: Número de usuários concorrentes - 1, 10.
 - **Resultados**: Kubeless e OpenFaaS possuem taxa de sucesso de 100%, enquanto Fission possui 98.11%. A mediana do tempo de resposta do OpenFaaS é a maior dentre as plataformas, apesar de as demais possuirem outliers piores. Fission e Kubeless escalam réplicas após 100 segundos de experimento, sendo o Kubeless quem mantém a baixa latência por mais tempo. O OpenFaaS escala réplicas apenas após 200 segundos de experimento e possui maior tempo de execução de experimento devido os tempo de resposta serem maiores.  
-- **Crítica**: Os gráficos da figura 3 estão em escalas diferentes, o que dificulta a comparação dos resultados. Além disso, não há marcação para melhor visualizar o evento observado.  
+- **Crítica**: Os gráficos da figura 3 estão em escalas diferentes, o que dificulta a comparação dos resultados. Além disso, não há marcação para melhor visualizar o evento observado. Além disso, mantém-se o mesmo problema de configuração padrão do experimento 1.f
 - **Graficos e Tabelas**: 
 ![exp2-plot](exp2-plot.png)
 
@@ -35,7 +35,7 @@ Os experimentos executados compararam três plataformas de computação serverle
 Os experimentos executados evidenciam que o Kubeless possui desempenho mais consistente dentre as 3 plataformas, sendo seu desempenho justificado por sua arquitetura simples. Também conclui-se que para funções simples, Fission e OpenFaaS mantiveram baixa média e mediana de latência, mas que para funções de uso mais intenso da CPU esses frameworks em si devem ser escalados a fim de evitar gargalos individuais de seus componentes.  
 
 ## Críticas
-O artigo adicionou uma tabela para comparar os recursos das plataformas Fission, Kubeless, OpenWhisk e OpenFaaS. Não havia necessidade pois o foco do trabalho era a avaliação de desempenho e adicionar essa tabela ocupa uma quantidade considerável de espaço. Além disso, nessa tabela há o OpenWhisk, uma plataforma que foi descrita no artigo mas não utilizada nos experimentos. Uma vez que esta plataforma não foi avaliada sua performance em comparação às demais, poderia ter sido removida da tabela e retirado o trecho que a descreve no artigo. Isso pouparia espaço que poderia ser utilizado para detalhar melhor as partes interessante deste artigo. 
+O artigo adicionou uma tabela para comparar os recursos das plataformas Fission, Kubeless, OpenWhisk e OpenFaaS. Não havia necessidade pois o foco do trabalho era a avaliação de desempenho e adicionar essa tabela ocupa uma quantidade considerável de espaço. Além disso, nessa tabela há o OpenWhisk, uma plataforma que foi descrita no artigo mas não utilizada nos experimentos. Uma vez que esta plataforma não foi avaliada sua performance em comparação às demais, poderia ter sido removida da tabela e retirado o trecho que a descreve no artigo. Isso pouparia espaço que poderia ser utilizado para detalhar melhor as partes interessante deste artigo. Por fim, o artigo poderia explicar melhor a causa dos problemas de desempenho de cada plataforma e propor sugestões para a melhoria dos mesmos.    
 
 ## Relacionados
 1. [Serverless computing: Current trends and open problems] sumariza características gerais de plataformas serverless e descreve problemas em aberto nessa área.  
