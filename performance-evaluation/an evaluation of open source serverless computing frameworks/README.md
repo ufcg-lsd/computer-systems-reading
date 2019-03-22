@@ -19,7 +19,7 @@ Experimento 1:
 - **Fator**: Número de usuários concorrentes - 1, 5, 10, 20, 50, 100.
 - **Cenários**: 1 réplica, 25 réplicas, 50 réplicas. Em 3 workers distintos.
 - **Resultados**: Fission possue a menor mediana de tempo de resposta (2ms) em todos os casos. Kubeless e OpenFaaS mantém a mediana de tempo de resposta abaixo de 80ms. É observado que não há mudança significativa a medida que o número de réplicas é alterado. Exceto para o Kubeless, que com 50 réplicas e 100 usuários concorrentes obteve tempo de resposta menor em 10ms. O Fission possui significativamente  mais outliers que as demais plataformas e esses outliers também possuem maior valor de tempo de serviço. Por fim, a taxa de sucesso para todos os casos foi de 100% para o Kubeless e de 99% para o Fission. O OpenFaaS obteve taxa de sucesso acima de 98% ou menor quando tinha-se 50 ou mais requisições concorrentes. 
-- **Crítica**: 
+- **Crítica**: Não explicou a razão pela qual o Fission obteve tempo de resposta tão pequeno, algo esperado visto o valor observado. Não garantiu (ou pelo menos não certificou) que as configurações utilizadas nos frameworks eram de fato justas pois o autor optou por utilizar configuração padrão ao máximo e não há garantia de que essas plataformas são utilizadas assim na prática.
 
 Experimento 2:
 - **Visão geral**: 5 Execuções com envio de 10.000 requisições explorando o impacto do auto scaling a 50% do uso de CPU.
@@ -28,12 +28,13 @@ Experimento 2:
 - **Fator**: Número de usuários concorrentes - 1, 10.
 - **Cenários**: 1 réplica, 25 réplicas, 50 réplicas. Em 3 workers distintos.
 - **Resultados**: Kubeless e OpenFaaS possuem taxa de sucesso de 100%, enquanto Fission possue 98.11%. A mediana do tempo de resposta do OpenFaaS é a maior dentre as plataformas, apesar de as demais possuirem outliers piores. Fission e Kubeless escalam réplicas após 100 segundos de experimento, sendo o Kubeless quem mantém a baixa latência por mais tempo. O OpenFaaS escala réplicas apenas após 200 segundos de experimento e possue maior tempo de execução de experimento devido os tempo de resposta serem maiores.  
-- **Crítica**:
+- **Crítica**: Os gráficos da figura 3 estão em escalas diferentes, o que dificulta a comparação dos resultados. Além disso, não há marcação para melhor visualizar o evento observado.  
 
 ## Conclusão 
 Os experimentos executados evidenciam que o Kubeless possue maior performace consistente dentre as 3 plataformas, sendo seu desempenho justificado por sua arquitetura simples. Também conclui-se que para funções simples, Fission e OpenFaaS mantiveram baixa média e mediana de latência, mas que para funções de uso mais intenso da CPU esses frameworks em si devem ser escalados a fim de evitar gargalos individuais de seus componentes.  
 
 ## Críticas
+O artigo adicionou uma tabela para comparar os recursos das plataformas Fission, Kubeless, OpenWhisk e OpenFaaS. Não havia necessidade pois o foco do trabalho era a avaliação de desempenho e adicionar essa tabela ocupa uma quantidade considerável de espaço. Além disso, nessa tabela há o OpenWhisk, uma plataforma que foi descrita no artigo mas não utilizada nos experimentos. Uma vez que esta plataforma não foi avaliada sua performance em comparação às demais, poderia ter sido removida da tabela e retirado o trecho que a descreve no artigo. Isso pouparia espaço que poderia ser utilizado para detalhar melhor as partes interessante deste artigo. 
 
 ## Relacionados
 1. [Serverless computing: Current trends and open problems] sumariza características gerais de plataformas serverless e descreve problemas em aberto nessa área.  
