@@ -28,7 +28,7 @@ Experimento 2:
 - **Crítica**: Os gráficos da figura 3 estão em escalas diferentes, o que dificulta a comparação dos resultados. Além disso, não há marcação para melhor visualizar o evento observado.  
 
 ## Conclusão 
-Os experimentos executados evidenciam que o Kubeless possui maior performace consistente dentre as 3 plataformas, sendo seu desempenho justificado por sua arquitetura simples. Também conclui-se que para funções simples, Fission e OpenFaaS mantiveram baixa média e mediana de latência, mas que para funções de uso mais intenso da CPU esses frameworks em si devem ser escalados a fim de evitar gargalos individuais de seus componentes.  
+Os experimentos executados evidenciam que o Kubeless possui desempenho mais consistente dentre as 3 plataformas, sendo seu desempenho justificado por sua arquitetura simples. Também conclui-se que para funções simples, Fission e OpenFaaS mantiveram baixa média e mediana de latência, mas que para funções de uso mais intenso da CPU esses frameworks em si devem ser escalados a fim de evitar gargalos individuais de seus componentes.  
 
 ## Críticas
 O artigo adicionou uma tabela para comparar os recursos das plataformas Fission, Kubeless, OpenWhisk e OpenFaaS. Não havia necessidade pois o foco do trabalho era a avaliação de desempenho e adicionar essa tabela ocupa uma quantidade considerável de espaço. Além disso, nessa tabela há o OpenWhisk, uma plataforma que foi descrita no artigo mas não utilizada nos experimentos. Uma vez que esta plataforma não foi avaliada sua performance em comparação às demais, poderia ter sido removida da tabela e retirado o trecho que a descreve no artigo. Isso pouparia espaço que poderia ser utilizado para detalhar melhor as partes interessante deste artigo. 
