@@ -38,6 +38,6 @@ Os experimentos executados evidenciam que o Kubeless possue maior performace con
 ## Relacionados
 1. [Serverless computing: Current trends and open problems] sumariza características gerais de plataformas serverless e descreve problemas em aberto nessa área.  
 2. [A preliminary review of enterprise serverless cloud computing (functionas-a-service) platforms] apresenta uma análise de recursos de sete plataformas serverless corporativas.
-3. [“Evaluation of production serverless computing environments] analisa a performance de plataformas públicas utilizando funções que consomem CPU, memória e disco.
+3. [Evaluation of production serverless computing environments] analisa a performance de plataformas públicas utilizando funções que consomem CPU, memória e disco.
 4. [Serverless computing: An investigation of factors influencing microservice performance] avalia a performance de funções implantadas na AWS Lambda e Microsoft Azure Functions. 
 5. [A provider-friendly serverless framework for latency-critical applications] avalia latência no OpenWhisk em diferentes níveis throughput (taxa de transferência) e concorrência. O autor identifica como melhorar a inicialização das funções substituindo contêineres por um novo mecanismo de isolação. 
