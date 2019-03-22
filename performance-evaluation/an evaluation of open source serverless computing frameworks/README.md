@@ -6,13 +6,13 @@ Recent advancements in virtualization and software architecture have led to the 
 
 **Categoria: performance evaluation, serverless computing, functions-as-a-service.**
 
-## Problema
-
-## Solução
+## Problema e Solução
+Utilizar plataformas públicas de computação em núvem para aplicações serverless possue limitações. Uma alternativa para contornar essas limitações seria utilizar plataformas de código aberto. Contudo, essas plataformas até então não tiveram seu desempenho avaliado. Sendo assim, esse artigo provê uma comparação de desempenho de plataformas serverless de código aberto, avaliando sob diferente cargas de trabalho o tempo de resposta e a taxa de respostas com sucesso.   
 
 ## Avaliação e Resultados
 
-## Contribuição
+
+## Conclusão 
 
 ## Críticas
 
