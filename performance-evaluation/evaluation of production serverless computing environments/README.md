@@ -8,5 +8,5 @@ Serverless computing provides a small runtime container to execute lines of code
 ## Links
 - [IEEEXplore document](https://ieeexplore.ieee.org/document/8457830)
 - [ResearchGate publication](https://www.researchgate.net/publication/324362882_Evaluation_of_Production_Serverless_Computing_Environments)
-- [Digital Science Center - Indiana University Bloomington (pdf)](http://dsc.soic.indiana.edu/publications/Evaluation_of_Production_Serverless_Computing_Environments.pdf)
+- [Digital Science Center, Indiana University Bloomington (pdf)](http://dsc.soic.indiana.edu/publications/Evaluation_of_Production_Serverless_Computing_Environments.pdf)
 - [Github repository](https://github.com/lee212/FaaS-Evaluation)
