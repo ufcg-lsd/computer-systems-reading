@@ -43,3 +43,8 @@ O artigo adicionou uma tabela para comparar os recursos das plataformas Fission,
 3. [Evaluation of production serverless computing environments] analisa a performance de plataformas públicas utilizando funções que consomem CPU, memória e disco.
 4. [Serverless computing: An investigation of factors influencing microservice performance] avalia a performance de funções implantadas na AWS Lambda e Microsoft Azure Functions. 
 5. [A provider-friendly serverless framework for latency-critical applications] avalia latência no OpenWhisk em diferentes níveis throughput (taxa de transferência) e concorrência. O autor identifica como melhorar a inicialização das funções substituindo contêineres por um novo mecanismo de isolação. 
+
+## Links
+- [IEEEXplore document](https://ieeexplore.ieee.org/document/8591002)
+- [ResearchGate publication](https://www.researchgate.net/publication/328102827_An_Evaluation_of_Open_Source_Serverless_Computing_Frameworks)
+- [Department of Computer Science, Aalto University (pdf)](https://users.aalto.fi/~premsag1/docs/mohanty2018serverless.pdf)
