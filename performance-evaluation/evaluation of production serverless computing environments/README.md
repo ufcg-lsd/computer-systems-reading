@@ -6,7 +6,7 @@ Serverless computing provides a small runtime container to execute lines of code
 **Category: performance evaluation, benchmarking, serverless computing, functions-as-a-service, public cloud infrastructure.**
 
 ## Problem 
-
+Serverless computing is a cloud computing paradigm or a cloud service that enables stateless functions on containers with small resource allocation. Containers are more lightweight than virtual machines, which means that we can start and destroy them more quickly too, once virtual machines need time to scale with system settings i.e. an instance type, a base image, a network configuration, and a storage option, while containers only need to load its container image. That's only one of the container's advantages against virtual machines. We already know that virtual machines on Infrastructure as a Service (IaaS) given its current popularity are a viable option, but does the containers on Function as a Service (FaaS) viable too? Even better, as argued at paper's abstract, does the current serverless computing environments able to support dynamic applications in parallel when a partitioned task is executable on a small function instance?
 
 ## Proposal
 The paper evaluates serverless computing environments invoking functions in parallel to demonstrate the performance and throughput of serverless computing for distributed data processing. It compares the performance of CPU, memory, and disk intensive functions running in between a sequential and a concurrent invocation which helps understanding performance bottlenecks and function behaviors on serverless computing environments. It also measures the throughput of a set of event handlers including HTTP, database and storage which may indicate a maximum size of dequeuing event messages because functions are triggered by these common handlers supported by each serverless provider. Continuous development and integration are tested with source code changes and function configuration changes e.g. timeout value and memory size while concurrent functions are running. The rest contains comparisons between IaaS and FaaS using experiments on big data and deep learning applications and the latest features offered by each serverless computing environment from Amazon Lambda, Microsoft Azure Functions, Google Functions, and IBM OpenWhisk.
@@ -15,98 +15,14 @@ The paper evaluates serverless computing environments invoking functions in para
 Serverless computing environments were evaluated on the throughput of concurrent invocation, CPUs, response time for dynamic workload, runtime overhead, and a temporary directory I/O performance. The evaluation also compares cost-effectiveness, event
 trigger throughput, and features using a set of functions written by supported runtimes e.g. nodeJS, Python, Java, and C#.
 
-#### 1. Concurrent Function Throughput
-- **Overview**:
-- **Function**:
-- **Metric**:
-- **Factor**:
-- **Results**:
-- **Review**:
-- **Graphics and Tables**: 
-
-#### 2. Concurrency for CPU Intensive Workload
-- **Overview**:
-- **Function**:
-- **Metric**:
-- **Factor**:
-- **Results**:
-- **Review**:
-- **Graphics and Tables**: 
-
-#### 3. Concurrency for Disk Intensive Workload
-- **Overview**:
-- **Function**:
-- **Metric**:
-- **Factor**:
-- **Results**:
-- **Review**:
-- **Graphics and Tables**: 
-
-#### 4. Concurrency for Network Intensive Workload
-- **Overview**:
-- **Function**:
-- **Metric**:
-- **Factor**:
-- **Results**:
-- **Review**:
-- **Graphics and Tables**: 
-
-#### 5. Elasticity
-- **Overview**:
-- **Function**:
-- **Metric**:
-- **Factor**:
-- **Results**:
-- **Review**:
-- **Graphics and Tables**: 
-
-#### 6. Continuous Deployment and Integration
-- **Overview**:
-- **Function**:
-- **Metric**:
-- **Factor**:
-- **Results**:
-- **Review**:
-- **Graphics and Tables**: 
-
-#### 7. Serverless versus Virtual Machine
-- **Overview**:
-- **Function**:
-- **Metric**:
-- **Factor**:
-- **Results**:
-- **Review**:
-- **Graphics and Tables**: 
-
-#### 8. Trigger Comparison
-- **Overview**:
-- **Function**:
-- **Metric**:
-- **Factor**:
-- **Results**:
-- **Review**:
-- **Graphics and Tables**: 
-
-#### 9. Feature Comparison
-- **Overview**:
-- **Function**:
-- **Metric**:
-- **Factor**:
-- **Results**:
-- **Review**:
-- **Graphics and Tables**: 
-
-#### 10. Language Support
-- **Overview**:
-- **Function**:
-- **Metric**:
-- **Factor**:
-- **Results**:
-- **Review**:
-- **Graphics and Tables**: 
+## Results
 
 ## Conclusion
-Results show that the elasticity of Amazon Lambda exceeds others regarding CPU performance, network bandwidth, and I/O throughput when concurrent function invocations are made for dynamic workloads. Overall, serverless computing is able to scale relatively well to perform distributed data processing if a divided task is small enough to execute on a function instance with 1.5GB to 3GB memory limit and 5 to 10 minute execution time limit. It also indicates that serverless computing would be more cost-effective than processing on traditional virtual machines because of the almost zero delay on boot up new instances for additional function invocations and a charging model only for the execution time of functions instead of paying for idle time of machines.
+The paper claim that the current serverless computing environments are able to support dynamic applications in parallel as said at [abstract](https://github.com/ufcg-lsd/serverless-reading/tree/performance-evaluation/performance-evaluation/evaluation%20of%20production%20serverless%20computing%20environments#abstract) and asked in [problems](https://github.com/ufcg-lsd/serverless-reading/tree/performance-evaluation/performance-evaluation/evaluation%20of%20production%20serverless%20computing%20environments#problem). It concludes that serverless computing functions are able to process distributed data applications by quickly provisioning additional compute resources on multiple containers.  
+
+Results show that the elasticity of Amazon Lambda exceeds others regarding CPU performance, network bandwidth, and I/O throughput when concurrent function invocations are made for dynamic workloads. Overall, serverless computing is able to scale relatively well to perform distributed data processing if a divided task is small enough to execute on a function instance with 1.5GB to 3GB memory limit and 5 to 10 minute execution time limit. 
+
+It also indicates that serverless computing would be more cost-effective than processing on traditional virtual machines because of the almost zero delay on boot up new instances for additional function invocations and a charging model only for the execution time of functions instead of paying for idle time of machines.
 
 ## Review
 
