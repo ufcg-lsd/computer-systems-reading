@@ -6,7 +6,7 @@ Serverless computing provides a small runtime container to execute lines of code
 **Category: performance evaluation, benchmarking, serverless computing, functions-as-a-service, public cloud infrastructure.**
 
 ## Problem 
-Serverless computing is a cloud computing paradigm, a cloud service that enables run stateless functions on ephemeral containers with small resource allocation. Containers are more lightweight than virtual machines, which means that we can start and destroy them more quickly too, once virtual machines need time to scale with system settings like an instance type, a base image, a network configuration, and a storage option, while containers only need to load its container image. That's only one, among others, of the container's advantages against virtual machines. This paradigm seems promising, but we don't know all viable applications with the current state of commercial serverless platforms. Applications that do distribute data processing using concurrent invocations are an example. So, said that, does the current serverless computing environments able to support dynamic applications in parallel when a partitioned task is executable on a small function instance?
+Serverless computing is a cloud computing paradigm, a cloud service that enables run stateless functions on ephemeral containers with small resource allocation. Containers are more lightweight than virtual machines, which means that we can start and destroy them more quickly too. That's because virtual machines need time to scale with system settings (like an instance type, a base image, a network configuration, and a storage option), while containers only need to load its container image. That's only one, among others, of the container's advantages against virtual machines. This paradigm seems promising, but we don't know all viable applications with the current state of commercial serverless platforms. Applications that do distribute data processing using concurrent invocations are an example. So, said that, does the current serverless computing environments able to support dynamic applications in parallel when a partitioned task is executable on a small function instance?
 
 ## Proposal
 The paper evaluates serverless computing environments invoking functions in parallel to demonstrate the performance and throughput of serverless computing for distributed data processing through four popular public cloud serverless providers - AWS Lambda, Google Cloud Function, Microsoft Azure Functions, and IBM OpenWhisk. Four main types of evaluation are made.
@@ -21,30 +21,67 @@ Serverless computing environments were evaluated on the throughput of concurrent
 trigger throughput, and features using a set of functions written by supported runtimes. 
 
 #### Concurrent Function Throughput
-- **Overview**: Function throughput indicates concurrent processing since it tells how many function instances are supplied to deal with heavy requests. They created thousands of functions with identical logic but different name and treat them like invoking a single function in parallel. Under a  concurrent function invocation from 500 to 10000, they watched the throughput per second  through all four platforms.
+- **Overview**: Function throughput indicates concurrent processing since it tells how many function instances are supplied to deal with heavy requests. To evaluation concurrent function throughput, they created thousands of functions with identical logic but different name and treat them like invoking a single function in parallel. Under a concurrent function invocation from 500 to 10000, they watched the throughput per second  through all four platforms.
 - **Function**: The function's business logic was not informed.
-- **Metrics**: Throughput per second
-- **Factor**: From 500 to 10000 concurrent invocations.
+- **Metrics**: 
+  - Throughput per second, number of functions invocation satisfied per second.
+- **Factor**: 
+  - From 500 to 10000 concurrent invocations.
 - **Results**: 
   - Amazon Lambda in average generates about 400 throughputs per second, reaching its maximum function throughput at a small concurrent invocations number of 1000. 
   - IBM OpenWhisk and Microsoft Azure Functions show similar behavior in reaching its best throughput at 2000 invocations and decreasing slowly over increased concurrent invocations. 
   - Google Functions indicates slow but steady increase of throughput over increased invocations and reachs its maximum at 10000 concurrent invocations, having function throughput greater than IBM and Azure.
 
 #### Concurrency for CPU Intensive Workload
-- **Overview**: Multiplying two-dimensional array requires mostly compute operations without consuming other resources, which makes that a viable choice of function's business logic to stress CPU resources on a function instance with concurrent invocations. 
+- **Overview**: Multiplying two-dimensional array requires mostly compute operations without consuming other resources, which makes that a viable choice of function's business logic to stress CPU resources on a function instance with concurrent invocations. To evaluation concurrency for CPU intensive workload, they implemented in javascript a matrix multiplication function and invoke them under one and one hundred concurrent invocations.
 - **Function**: A matrix multiplication function written in a JavaScript.
 - **Metrics**: 
   - Elapsed time, the execution time of a function.
   - GFLOPS (Giga Floating Point Operations Per Second) per function.
   - TFLOPS (Tera Floating Point Operations Per Second) in total of 3000.
-- **Factor**: 1 and 100 concurrent invocations.
+- **Factor**: 
+  - 1 and 100 concurrent invocations.
 - **Results**: 
   - The results for non-parallel invocation are consistent whereas results with 100 invocations show a overhead between 28% and 4606% over the total execution time. It also implies that more than one invocation was assigned to a single instance, which means that two cpu-intensive function invocations may take twice longer by sharing CPU time in half. 
   - In the comparison of the total of GFLOPS and TFLOPS, AWS Lambda generates 4-8 and 5-7 times faster compute speed than others, respectively. Azure Functions, IBM OpenWhisk, and Google Functions are in an early stage of development and is expected that the allocated compute resource will be more comparable when the services are fully mature.
 
 #### Concurrency for Disk Intensive Workload
+- **Overview**: Serverless functions have small sized writable temporary directory useful for many purposes such as storing extra libraries, tools, and intermediate data files. To evaluate concurrency for disk intensive workload, a function that writes and reads in that temporary directory was implemented and they measure the I/O performance with one and one hundred concurrent invocations.
+- **Function**: A function that writes and reads files on the temp directory to stress a file I/O.
+- **Metrics**:
+  - Elapsed time, the execution time of a function.
+- **Factor**: 
+  - 1 and 100 concurrent invocations.
+- **Results**: 
+  - Microsoft Functions fail to complete function invocations within the execution time limit of 5 minutes.
+  - Read results with 100 invocations show an overhead of 91% on Amazon Lambda, 145% on Google Functions and 338% on IBM OpenWhisk whereas write results with 100 invocations show an overhead of 110% on Amazon Lambda, 164% on Google Functions and 1472% on IBM OpenWhisk.
+  - Notoriously, writing a file between 1 and 100 concurrent invocations is slightly worse compared to reading. 
+  - Writing speed on Amazon Lambda is 11 to 78 times faster than Google and IBM when 100 concurrent invocations are made.
+
 #### Concurrency for Network Intensive Workload
+- **Overview**: Processing dataset from dynamic applications such as big data and machine learning often incur significant performance degradation in congested networks due to heavy transactions of file uploading and downloading. To evaluate that, they implemented a function which requests 100 megabytes sized data from object storage on each service provider. Thus, using this function, a hundred concurrent invocations create network traffic in total of 10 gigabytes. 
+- **Function**: A function which requests 100 megabytes sized data.
+- **Metrics**:
+  - Elapsed time, the execution time of a function.
+- **Factor**: 
+  - 1 and 100 concurrent invocations.
+- **Results**: 
+  - Google Functions has a minimal overhead between 1 and the 100 concurrency level while Amazon Lambda is four times faster in loading data from Amazon object storage (S3) than Google object storage.
+  - Microsoft Azure Functions fails to get access of data from its blob storage at 100 concurrency level and they suspect it might be caused by the experimental runtime.
+
 #### Elasticity
+- **Overview**: Dynamic application performing latency-sensitive workloads needs elastic provisioning of function instances otherwise overhead and failure would be observed during the processing of workloads. To evaluate elasticity they implemented a function that takes less than 100 milliseconds and it concurrently. The number of concurrent invocation was random numbers ranging from 10 to 90 over time resulting in about 10 thousands of the total invocations within a minute.
+- **Function**: A function that takes less than 100 milliseconds running in NodeJS runtime. Business logic was not informed.
+- **Metrics**:
+  - Delays of instantiating new instances (cold start): obseved when existing function instances are overloaded and new instances are added slowly which may cause performance degradation in the entire invoked functions.
+  - Total number of instances created: observed when a workload jumps to higher than the point that existing instances can handle and the increased number of function instances stay for a while to process future requests.
+  - Execution time, the execution time of a function invocation.
+- **Factor**: 
+  - from 10 to 90 concurrent invocations.
+- **Results**: 
+  - Amazon and Google support elasticity well. Their 99th percentile of the function execution time is below 100 and 200 milliseconds, respectively.
+  - Both IBM and Azure show significant overhead comparing the 99th percentile of execution time. The IBM overhead is at least two times bigger than the others at this percentile and Azure has an overhead of at least eight times bigger than IBM.
+
 #### Continuous Deployment and Integration
 #### Serverless versus Virtual Machine
 #### Trigger Comparison
@@ -52,7 +89,7 @@ trigger throughput, and features using a set of functions written by supported r
 #### Language Support
 
 ## Conclusion
-The paper claim that the current serverless computing environments are able to support dynamic applications in parallel as said at abstract and asked in problems and concludes that serverless computing functions are able to process distributed data applications by quickly provisioning additional compute resources on multiple containers. 
+The paper claim that the current serverless computing environments are able to support dynamic applications in parallel as said at Abstract and questioned in Problem, and concludes that serverless computing functions are able to process distributed data applications by quickly provisioning additional compute resources on multiple containers. 
 
 Results show that the elasticity of Amazon Lambda exceeds others regarding CPU performance, network bandwidth, and I/O throughput when concurrent function invocations are made for dynamic workloads. Overall, serverless computing is able to scale relatively well to perform distributed data processing if a divided task is small enough to execute on a function instance with 1.5GB to 3GB memory limit and 5 to 10 minute execution time limit. 
 
