@@ -18,7 +18,7 @@ trigger throughput, and features using a set of functions written by supported r
 ## Results
 
 ## Conclusion
-The paper claim that the current serverless computing environments are able to support dynamic applications in parallel as said at [abstract](https://github.com/ufcg-lsd/serverless-reading/tree/performance-evaluation/performance-evaluation/evaluation%20of%20production%20serverless%20computing%20environments#abstract) and asked in [problems](https://github.com/ufcg-lsd/serverless-reading/tree/performance-evaluation/performance-evaluation/evaluation%20of%20production%20serverless%20computing%20environments#problem). It concludes that serverless computing functions are able to process distributed data applications by quickly provisioning additional compute resources on multiple containers.  
+The paper claim that the current serverless computing environments are able to support dynamic applications in parallel as said at abstract and asked in problems. It concludes that serverless computing functions are able to process distributed data applications by quickly provisioning additional compute resources on multiple containers.  
 
 Results show that the elasticity of Amazon Lambda exceeds others regarding CPU performance, network bandwidth, and I/O throughput when concurrent function invocations are made for dynamic workloads. Overall, serverless computing is able to scale relatively well to perform distributed data processing if a divided task is small enough to execute on a function instance with 1.5GB to 3GB memory limit and 5 to 10 minute execution time limit. 
 
