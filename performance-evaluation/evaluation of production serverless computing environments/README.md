@@ -13,16 +13,13 @@ The paper evaluates serverless computing environments invoking functions in para
 
 ## Evaluation
 Serverless computing environments were evaluated on the throughput of concurrent invocation, CPUs, response time for dynamic workload, runtime overhead, and a temporary directory I/O performance. The evaluation also compares cost-effectiveness, event
-trigger throughput, and features using a set of functions written by supported runtimes e.g. nodeJS, Python, Java, and C#.
+trigger throughput, and features using a set of functions written by supported runtimes.
 
 ## Results
+Results show that the elasticity of Amazon Lambda exceeds others regarding CPU performance, network bandwidth, and I/O throughput when concurrent function invocations are made for dynamic workloads. Overall, serverless computing is able to scale relatively well to perform distributed data processing if a divided task is small enough to execute on a function instance with 1.5GB to 3GB memory limit and 5 to 10 minute execution time limit. It also indicates that serverless computing would be more cost-effective than processing on traditional virtual machines because of the almost zero delay on boot up new instances for additional function invocations and a charging model only for the execution time of functions instead of paying for idle time of machines.
 
 ## Conclusion
-The paper claim that the current serverless computing environments are able to support dynamic applications in parallel as said at abstract and asked in problems. It concludes that serverless computing functions are able to process distributed data applications by quickly provisioning additional compute resources on multiple containers.  
-
-Results show that the elasticity of Amazon Lambda exceeds others regarding CPU performance, network bandwidth, and I/O throughput when concurrent function invocations are made for dynamic workloads. Overall, serverless computing is able to scale relatively well to perform distributed data processing if a divided task is small enough to execute on a function instance with 1.5GB to 3GB memory limit and 5 to 10 minute execution time limit. 
-
-It also indicates that serverless computing would be more cost-effective than processing on traditional virtual machines because of the almost zero delay on boot up new instances for additional function invocations and a charging model only for the execution time of functions instead of paying for idle time of machines.
+The paper claim that the current serverless computing environments are able to support dynamic applications in parallel as said at abstract and asked in problems and concludes that serverless computing functions are able to process distributed data applications by quickly provisioning additional compute resources on multiple containers.
 
 ## Review
 
