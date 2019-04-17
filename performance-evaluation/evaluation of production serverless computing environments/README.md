@@ -7,12 +7,13 @@ Serverless computing provides a small runtime container to execute lines of code
 
 ## Problem 
 
+
 ## Proposal
-The paper evaluates serverless computing environments invoking functions in parallel to demonstrate the performance and throughput of serverless computing for distributed data processing. It compares the performance of CPU, memory, and disk intensive functions running in between a sequential and a concurrent invocation which helps understanding performance bottlenecks and function behaviors on serverless computing environments. It also measures the throughput of a set of event handlers including HTTP, database and storage which may indicate a maximum size of dequeuing event messages because functions are triggered by these common handlers supported by each serverless provider. The rest contains comparisons between IaaS and FaaS using experiments on big data and deep learning applications and the latest features offered by each serverless computing environment from Amazon Lambda, Microsoft Azure Functions, Google Functions, and IBM OpenWhisk.
+The paper evaluates serverless computing environments invoking functions in parallel to demonstrate the performance and throughput of serverless computing for distributed data processing. It compares the performance of CPU, memory, and disk intensive functions running in between a sequential and a concurrent invocation which helps understanding performance bottlenecks and function behaviors on serverless computing environments. It also measures the throughput of a set of event handlers including HTTP, database and storage which may indicate a maximum size of dequeuing event messages because functions are triggered by these common handlers supported by each serverless provider. Continuous development and integration are tested with source code changes and function configuration changes e.g. timeout value and memory size while concurrent functions are running. The rest contains comparisons between IaaS and FaaS using experiments on big data and deep learning applications and the latest features offered by each serverless computing environment from Amazon Lambda, Microsoft Azure Functions, Google Functions, and IBM OpenWhisk.
 
 ## Evaluation
 Serverless computing environments were evaluated on the throughput of concurrent invocation, CPUs, response time for dynamic workload, runtime overhead, and a temporary directory I/O performance. The evaluation also compares cost-effectiveness, event
-trigger throughput, and features using a set of functions written by supported runtimes e.g.(for example) nodeJS, Python, Java, and C#.
+trigger throughput, and features using a set of functions written by supported runtimes e.g. nodeJS, Python, Java, and C#.
 
 #### 1. Concurrent Function Throughput
 - **Overview**:
