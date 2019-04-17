@@ -15,24 +15,94 @@ Serverless computing environments were evaluated on the throughput of concurrent
 trigger throughput, and features using a set of functions written by supported runtimes e.g.(for example) nodeJS, Python, Java, and C#.
 
 #### 1. Concurrent Function Throughput
+- **Overview**:
+- **Function**:
+- **Metric**:
+- **Factor**:
+- **Results**:
+- **Review**:
+- **Graphics and Tables**: 
 
 #### 2. Concurrency for CPU Intensive Workload
+- **Overview**:
+- **Function**:
+- **Metric**:
+- **Factor**:
+- **Results**:
+- **Review**:
+- **Graphics and Tables**: 
 
 #### 3. Concurrency for Disk Intensive Workload
+- **Overview**:
+- **Function**:
+- **Metric**:
+- **Factor**:
+- **Results**:
+- **Review**:
+- **Graphics and Tables**: 
 
 #### 4. Concurrency for Network Intensive Workload
+- **Overview**:
+- **Function**:
+- **Metric**:
+- **Factor**:
+- **Results**:
+- **Review**:
+- **Graphics and Tables**: 
 
 #### 5. Elasticity
+- **Overview**:
+- **Function**:
+- **Metric**:
+- **Factor**:
+- **Results**:
+- **Review**:
+- **Graphics and Tables**: 
 
 #### 6. Continuous Deployment and Integration
+- **Overview**:
+- **Function**:
+- **Metric**:
+- **Factor**:
+- **Results**:
+- **Review**:
+- **Graphics and Tables**: 
 
 #### 7. Serverless versus Virtual Machine
+- **Overview**:
+- **Function**:
+- **Metric**:
+- **Factor**:
+- **Results**:
+- **Review**:
+- **Graphics and Tables**: 
 
 #### 8. Trigger Comparison
+- **Overview**:
+- **Function**:
+- **Metric**:
+- **Factor**:
+- **Results**:
+- **Review**:
+- **Graphics and Tables**: 
 
 #### 9. Feature Comparison
+- **Overview**:
+- **Function**:
+- **Metric**:
+- **Factor**:
+- **Results**:
+- **Review**:
+- **Graphics and Tables**: 
 
 #### 10. Language Support
+- **Overview**:
+- **Function**:
+- **Metric**:
+- **Factor**:
+- **Results**:
+- **Review**:
+- **Graphics and Tables**: 
 
 ## Conclusion
 Results show that the elasticity of Amazon Lambda exceeds others regarding CPU performance, network bandwidth, and I/O throughput when concurrent function invocations are made for dynamic workloads. Overall, serverless computing is able to scale relatively well to perform distributed data processing if a divided task is small enough to execute on a function instance with 1.5GB to 3GB memory limit and 5 to 10 minute execution time limit. It also indicates that serverless computing would be more cost-effective than processing on traditional virtual machines because of the almost zero delay on boot up new instances for additional function invocations and a charging model only for the execution time of functions instead of paying for idle time of machines.
