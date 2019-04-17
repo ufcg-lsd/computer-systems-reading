@@ -30,10 +30,15 @@ Serverless computing provides a small runtime container to execute lines of code
 #### 10. Language Support
 
 ## Conclusion
+Results show that the elasticity of Amazon Lambda exceeds others regarding to CPU performance, network bandwidth and I/O throughput when concurrent function invocations are made for dynamic workloads. Overall, serverless computing is able to scale relatively well to perform distributed data processing if a divided task is small enough to execute on a function instance with 1.5GB to 3GB memory limit and 5 to 10 minute execution time limit. It also indicates that serverless computing would be more cost-effective than processing on traditional virtual machines because of the almost zero delay on boot up new instances for additional function invocations and a charging model only for the execution time of functions instead of paying for an idle time of machines. 
 
 ## Review
 
 ## Related Work
+1. [Return of the runtimes: Rethinking the language runtime system for the cloud 3.0 era] it discusses the programming language runtime on serverless computing.
+2. [Faaster, better, cheaper: The prospect of serverless scientific computing and hpc] argue the possible use cases of serverless computing using scientific computing applications.
+3. [Zappa, Serverless python web services] a python based serverless powered on Amazon Lambda that keeps functions in warm state by poking at a regular interval.
+4. [Serverless computing: Design, implementation, and performance] a function latency comparison of production serverless computing environments.
 
 ## Links
 - [IEEEXplore document](https://ieeexplore.ieee.org/document/8457830)
