@@ -8,6 +8,8 @@ Serverless computing provides a small runtime container to execute lines of code
 ## Problem & Proposal
 
 ## Evaluation
+Serverless computing environments were evaluated on throughput of concurrent invocation, CPUs, response time for dynamic workload, runtime overhead, and a temporary directory I/O performance. The evaluation also compare cost-effectiveness, event
+trigger throughput, and features using a set of functions written by supported runtimes e.g.(for example) nodeJS, Python, Java and C#. 
 
 #### 1. Concurrent Function Throughput
 
