@@ -9,25 +9,25 @@ Serverless computing provides a small runtime container to execute lines of code
 
 ## Evaluation
 
-#### Concurrent Function Throughput
+#### 1. Concurrent Function Throughput
 
-#### Concurrency for CPU Intensive Workload
+#### 2. Concurrency for CPU Intensive Workload
 
-#### Concurrency for Disk Intensive Workload
+#### 3. Concurrency for Disk Intensive Workload
 
-#### Concurrency for Network Intensive Workload
+#### 4. Concurrency for Network Intensive Workload
 
-#### Elasticity
+#### 5. Elasticity
 
-#### Continuous Deployment and Integration
+#### 6. Continuous Deployment and Integration
 
-#### Serverless versus Virtual Machine
+#### 7. Serverless versus Virtual Machine
 
-#### Trigger Comparison
+#### 8. Trigger Comparison
 
-#### Feature Comparison
+#### 9. Feature Comparison
 
-#### Language Support
+#### 10. Language Support
 
 ## Conclusion
 
