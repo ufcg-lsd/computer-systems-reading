@@ -13,7 +13,7 @@ The paper evaluates serverless computing environments invoking functions in para
 
 - Performance comparison of CPU, memory, and disk intensive functions running in between a sequential and a concurrent invocation which helps understanding performance bottlenecks and function behaviors on serverless computing environments. 
 - Throughput measure of a set of event handlers including HTTP, database and storage which may indicate a maximum size of dequeuing event messages because functions are triggered by these common handlers supported by each serverless provider. 
-- Continuous development and integration tested with source code and function configuration changes while concurrent functions are running. 
+- Continuous development and integration teste with source code and function configuration changes while concurrent functions are running. 
 - Comparisons between Infrastructure as a Service (IaaS) and Function as a Service (FaaS) using experiments on big data and deep learning applications and the latest features offered by each serverless computing environment.
 
 ## Evaluation
@@ -83,10 +83,20 @@ trigger throughput, and features using a set of functions written by supported r
   - Both IBM and Azure show significant overhead comparing the 99th percentile of execution time. The IBM overhead is at least two times bigger than the others at this percentile and Azure has an overhead of at least eight times bigger than IBM.
 
 #### Continuous Deployment and Integration
+- **Overview**: Development and Operations (DevOps) paradigm is applied to serverless functions to enable continuous delivery and integration while functions are in action. So, they evaluated the deployment and integration of functions by changing the source code before the first 200 invocations and an update of configurations within the next 200 invocations thus different behaviors should be observed close to these timelines.
+- **Metrics**:
+  - Function instances: Looking into existing, new and failed ones. 
+- **Factor**: 
+  - 500 function executions in total.
+  - 10 concurrent invocations.
+- **Results**: 
+  - Amazon has a certain period to replace an existing deployment to new one. There are exstisting instances between 200 and 400 invocations, which is a indicative that previous function instances continued to process several event messages although a new piece of source code is published before the 200 invocations.
+  - Google and IBM refreshed the entire instances when there is a new deployment although Google failed to multiple requests during the update.
+  - Microsoft Azure shows a similar behavior but it is not clearly visible in the figure due to a small number of instances.
+
 #### Serverless versus Virtual Machine
 #### Trigger Comparison
-#### Feature Comparison
-#### Language Support
+#### Feature Comparison & Language Support
 
 ## Conclusion
 The paper claim that the current serverless computing environments are able to support dynamic applications in parallel as said at Abstract and questioned in Problem, and concludes that serverless computing functions are able to process distributed data applications by quickly provisioning additional compute resources on multiple containers. 
