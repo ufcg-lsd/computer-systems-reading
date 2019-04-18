@@ -95,8 +95,38 @@ trigger throughput, and features using a set of functions written by supported r
   - Microsoft Azure shows a similar behavior but it is not clearly visible in the figure due to a small number of instances.
 
 #### Serverless versus Virtual Machine
+- **Overview**:
+- **Metrics**:
+- **Factor**: 
+- **Results**:
+
 #### Trigger Comparison
-#### Feature Comparison & Language Support
+- **Overview**: In order to measure a trigger throughput to indicate the maximum number of processing event messages in parallel, three types of triggers are selected; HTTP, database and object storage triggers. They did not share further detail about their experiment, but they did tell that Azure and Google Cloud database trigger were not compared as they do not have a direct trigger available to their respective functions.
+- **Metrics**:
+  - Number of functions processed per second
+- **Factor**: 
+  - HTTP, database and object storage triggers.
+- **Results**:
+  - Triggers in AWS Lambda show that the median throughput of the HTTP trigger is 55.7 functions per second and the object storage has the 25.16 functions per second median throughput.
+  - The database trigger in AWS Lambda has throughput of 864.60 functions per second which is about 32 times of object storage throughput and 15 times of HTTP trigger throughput.
+  - Microsoft Azure has the highest number of 142 invocations per second whereas Google Functions shows the least throughput as they invoke very less number of functions per second.
+  - All serverless providers show a linear pattern of function invocation when the number of requests is increased.
+  - There is no signal of any degradation of performance in handling massive requests up to 3000 concurrent invocations and can be concluded that the increase in invocation does not affect the performance.
+  - They didn't make commentaries about OpenWhisk, but it seems that it had bad results for object storage or that parameter was not tested.
+
+#### Feature Comparison
+- **Overview**: The feature comparison helps readers of this paper understand the underlying system level information of the serverless platform. To do that, a table was used to compare options of Runtime language, Trigger, Price per Memory, Price per Execution, Free Tier, Maximum Memory, Container OS, Container CPU Info, Temp Directory (Path), Execution Timeout and Code Size Limit of each serverless provide evaluated. 
+- **Results**:  
+  - AWS Lambda offers a wide range of trigger endpoints compared to the other cloud providers and has cost of usage of serverless function based on two metrics: the number of functions invocation and the time taken by a function to execute and complete paired with an amount of memory in size of gigabytes allocated.
+  - All providers have similar pricing tables but IBM openWhisk does not charge the number of invocations whereas the other providers do charge.
+  - Google upscales in terms of memory as it provides maximum of 2 GB of memory to run a serverless function. It also outperforms in terms of providing maximum execution timeout of 9 minutes which would be helpful for long running jobs.
+  - IBM OpenWhisk has the container which can provided the best clock speed of 2100 *4 MHz.
+
+#### Language Support
+- **Overview**: Each serverless provider supports different programming languages. This evaluation compares which languages are available in each provider and compares each language runtime overhead price in each serverless provider, guiding to understand trade-offs of choosing a language.
+- **Results**:
+  - As an interpreted language, JavaScript runtime environment is present in all of the providers while Python is mostly supported of them. Compiled languages such as Java and C# are also supported and is assumed that serverless providers intends to extend language support in the future. 
+  - There is a runtime overhead between the supported languages in each provider that impacts runtime costs in seconds. This overhead may be negligible, but in some cases, it might be sensitive enough to choose a language runtime since there are timeouts in executing a function. For instance, runtime overhead in AWS is negligible, C# in Azure creates the least overhead among other runtimes, Python in IBM OpenWhisk shows the least standard deviation and Node.js environment is a better choice in Google Functions. 
 
 ## Conclusion
 The paper claim that the current serverless computing environments are able to support dynamic applications in parallel as said at Abstract and questioned in Problem, and concludes that serverless computing functions are able to process distributed data applications by quickly provisioning additional compute resources on multiple containers. 
