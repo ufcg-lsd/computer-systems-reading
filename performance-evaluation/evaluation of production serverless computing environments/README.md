@@ -6,7 +6,7 @@ Serverless computing provides a small runtime container to execute lines of code
 **Category: performance evaluation, benchmarking, serverless computing, functions-as-a-service, public cloud infrastructure.**
 
 ## Problem 
-Serverless computing is a cloud computing paradigm, a cloud service that enables run stateless functions on ephemeral containers with small resource allocation. Containers are more lightweight than virtual machines, which means that we can start and destroy them more quickly too. That's because virtual machines need time to scale with system settings (like an instance type, a base image, a network configuration, and a storage option), while containers only need to load its container image. That's only one, among others, of the container's advantages against virtual machines. This paradigm seems promising, but we don't know all viable applications with the current state of commercial serverless platforms. Applications that do distribute data processing using concurrent invocations are an example. So, said that, does the current serverless computing environments able to support dynamic applications in parallel when a partitioned task is executable on a small function instance?
+Serverless computing is a cloud computing paradigm, a cloud service that enables run stateless functions on ephemeral containers with small resource allocation. Containers are more lightweight than virtual machines, which means that we can start and destroy them more quickly too once virtual machines need time to scale with system settings (like an instance type, a base image, a network configuration, and a storage option), while containers only need to load its container image - and that's only one of the container's advantages against virtual machines. A problem related with serverless environment is that we don't know what applications are viable with their current state. For example, does distributed data processing applications viable in those platforms?
 
 ## Proposal
 The paper evaluates serverless computing environments invoking functions in parallel to demonstrate the performance and throughput of serverless computing for distributed data processing through four popular public cloud serverless providers - AWS Lambda, Google Cloud Function, Microsoft Azure Functions, and IBM OpenWhisk. Four main types of evaluation are made.
@@ -21,7 +21,7 @@ Serverless computing environments were evaluated on the throughput of concurrent
 trigger throughput, and features using a set of functions written by supported runtimes. 
 
 #### Concurrent Function Throughput
-- **Overview**: Function throughput indicates concurrent processing since it tells how many function instances are supplied to deal with heavy requests. To evaluation concurrent function throughput, they created thousands of functions with identical logic but different name and treat them like invoking a single function in parallel. Under a concurrent function invocation from 500 to 10000, they watched the throughput per second  through all four platforms.
+- **Overview**: Function throughput indicates concurrent processing since it tells how many function instances are supplied to deal with heavy requests. To evaluation concurrent function throughput, they created thousands of functions with identical logic but different name and treat them like invoking a single function in parallel. Under a concurrent function invocation from 500 to 10000, they watched the throughput per second through all four platforms.
 - **Function**: The function's business logic was not informed.
 - **Metrics**: 
   - Throughput per second, number of functions invocation satisfied per second.
@@ -70,7 +70,7 @@ trigger throughput, and features using a set of functions written by supported r
   - Microsoft Azure Functions fails to get access of data from its blob storage at 100 concurrency level and they suspect it might be caused by the experimental runtime.
 
 #### Elasticity
-- **Overview**: Dynamic application performing latency-sensitive workloads needs elastic provisioning of function instances otherwise overhead and failure would be observed during the processing of workloads. To evaluate elasticity they implemented a function that takes less than 100 milliseconds and it concurrently. The number of concurrent invocation was random numbers ranging from 10 to 90 over time resulting in about 10 thousands of the total invocations within a minute.
+- **Overview**: Dynamic application performing latency-sensitive workloads needs elastic provisioning of function instances otherwise overhead and failure would be observed during the processing of workloads. To evaluate elasticity they implemented a function that takes less than 100 milliseconds and that's all (they did not get into function details). The number of concurrent invocation was random numbers ranging from 10 to 90 over time resulting in about 10 thousands of the total invocations within a minute.
 - **Function**: A function that takes less than 100 milliseconds running in NodeJS runtime. Business logic was not informed.
 - **Metrics**:
   - Delays of instantiating new instances (cold start): obseved when existing function instances are overloaded and new instances are added slowly which may cause performance degradation in the entire invoked functions.
@@ -95,10 +95,18 @@ trigger throughput, and features using a set of functions written by supported r
   - Microsoft Azure shows a similar behavior but it is not clearly visible in the figure due to a small number of instances.
 
 #### Serverless versus Virtual Machine
-- **Overview**:
-- **Metrics**:
+- **Overview**: Serverless computing aims to provide dynamic compute resources for lightweight functions without administrations and offers cost-efficient solutions like pay-as-you-go whereas virtual machines have offered multiple options to scale compute resources with machine types, network bandwidth and storage performance to meet the expectation of performance requirements of a given workload which requires optimal capacity planning and system management. In this context, the paper introduces experimental results to understand the differences between these two computing models and a cost comparison to explain their cost effectiveness.
+- **Metrics**: 
+  - RAM Memory.
+  - Cost per Second.
+  - Elapsed Second.
+  - Total Cost.
 - **Factor**: 
+  - Container.
+  - Virtual Machine.
 - **Results**:
+  - Sequential and continuing function on serverless computing would not be a good choice in terms of cost-savings although it is still a simple way of deploying a function as a service with a minimal infrastructure management. 
+  - Dynamic concurrent invocations on serverless computing will save cost against overloaded virtual machines when a number of event messages spikes.
 
 #### Trigger Comparison
 - **Overview**: In order to measure a trigger throughput to indicate the maximum number of processing event messages in parallel, three types of triggers are selected; HTTP, database and object storage triggers. They did not share further detail about their experiment, but they did tell that Azure and Google Cloud database trigger were not compared as they do not have a direct trigger available to their respective functions.
