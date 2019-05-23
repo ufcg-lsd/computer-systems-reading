@@ -146,12 +146,12 @@ It also indicates that serverless computing would be more cost-effective than pr
 ## Review
 This paper provides a broad-ish approach to evaluate public cloud serverless providers, looking into general and specific criteria. It's a good start point to guide others to alike experiments. Also, the results shown were relevant since all questions answered attacks important points such as performance and billing of these compared platforms. Still, this work has points to improve that we are listing below
   
+- This study has a lot of data to share and decided to share a lot of experiments - ten in total. This decision leads the paper to have a horizontal description instead of a vertical one which vertical improves details and go deep into it whereas the horizontal doesn't give certain necessary experiment details (how the experiment was performed, for example). That's justified because there is a size limit, but I believe that experiments could be omitted in favor of grant space for other experiments.
+- Some plots have different scales, such as figure 2, 3 and 4. It makes harder to compare those platforms by plot, but I believe that is was done this way to improve individual reading of each provider result.
 - The paper seems to have a poor author's review and neglected by conference revisors for the work relevance, because:
   - There is typing error such as "Servereless" at the end of the last paragraph before A.Trigger in the introduction section, just after declaring the paper's objective.
   - During all paper, verbal agreement errors appear like "Functions on serverless computing is able to..." at the beginning of the conclusion section.
   - Overall, the text's parts look confusing and hard to understand what is talked about, when is said that " Microsoft Azure shows a similar behavior..." connected to the last sentence but plots show that this similar behavior is connected to a sentence before.
-- This study has a lot of data to share and decided to share a lot of experiments - ten in total. This decision leads the paper to have a horizontal description instead of a vertical one which vertical improves details and go deep into it whereas the horizontal doesn't give certain necessary experiment details (how the experiment was performed, for example). That's justified because there is a size limit, but I believe that experiments could be omitted in favor of grant space for other experiments.
-- Lastly, some plots have different scales, such as figure 2, 3 and 4. It makes harder to compare those platforms by plot, but I believe that is was done this way to improve individual reading of each provider result.
 
 ## Related Work
 1. [Return of the runtimes: Rethinking the language runtime system for the cloud 3.0 era] it discusses the programming language runtime on serverless computing.
