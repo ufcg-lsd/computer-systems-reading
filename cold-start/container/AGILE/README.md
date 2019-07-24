@@ -1,49 +1,15 @@
-# **[SOCK: Rapid Task Provisioning with Serverless-Optimized Containers](https://www.usenix.org/system/files/conference/atc18/atc18-oakes.pdf)**
+# **[Agile Cold Starts for Scalable Serverless](https://www.usenix.org/system/files/hotcloud19-paper-mohan.pdf)**
 
 ## Abstract
+The Serverless or Function-as-a-Service (FaaS) model capitalizes on lightweight execution by packaging code and dependencies together for just-in-time dispatch. Often a container environment has to be set up afresh – a condition called “coldstart", and in such cases, performance suffers and overheadsmount, both deteriorating  rapidly under high concurrency. Caching and reusing previously employed containers ties up memory and risks information leakage. Latency for cold starts is frequently due to work and wait-times in setting up various dependencies – such as in initializing networking elements. This paper proposes a solution that pre-crafts such resources and then dynamically reassociates them with baseline containers. Applied to networking, this approach demonstrates an order of magnitude gain in cold starts, negligible memory consumption, and flat startup time under rising concurrency.
 
-Serverless computing promises to provide applications with cost savings and extreme elasticity. Unfortunately, slow application and container initialization can hurt common-case latency on serverless platforms. In this work, we analyze Linux container primitives, identifying scalability bottlenecks related to storage and network isolation.
-
-O SOCK foi integrado à plataforma OpenLambda para a geração de resultados.
-
-**Categoria: System proposal, Cold Start, Runtime Environment.**
+**Categoria: System proposal, Cold Start, Pause Container, Container Startup Optimization.**
 
 ## Problema
-Foca no problema de [Cold Start](../../README.md) para as [etapas 2 e 3](../../README.md).
-
-O problema da etapa 2 é justificado com a análise da escalabilidade das operações necessárias para criação de containers como:
-1. Modificação de namespaces
-  - **IPC**: Foi observado que possui uma latência “inofensiva” e a operação não se degrada com o aumento de uso concorrente.
-
-  - **Mounts**: Foi observado que possui uma latência “inofensiva” e a operação não se degrada com o aumento de uso concorrente.
-
-  - **Network**: Foi observado que a latência da operação de criação do namespace se degrada à medida que o uso concorrente aumenta.
-
-2. Isolamento do sistema de arquivos
-  - Duas estratégias foram comparadas:
-    1. **AUFS**:
-      - Possui um bom desempenho e a performance não se degrada à medida que o número usuários concorrentes aumenta.
-    2. **Bind**:
-      - Possui um bom desempenho e a performance não se degrada à medida que o número usuários concorrentes aumenta.
-      - Normalmente 2 vezes mais rápido do que o AUFS.
-
-3. Criação de cgroups
-  - Não sofre com problemas de escalabilidade, porém o reuso favorece o aumento da quantidade de operações por segundo.
-
-O problema da etapa 3 é justificado com a análise do tempo para médio para importar os pacotes de Python mais populares no repositório PyPI. O valor do tempo médio para o *import* é de 100ms, se uma aplicação *serverless* utiliza vários pacotes com o objetivo de realizar o reuso de código, então o tempo para começar a responder à uma requisição pode ser longo.
-
+The paper showed that under concurrency the container startup time is the major contributor to the cold start latency and a subsequent analysis showed that the container network creation and initialization inside the host accounts for 90% of the startup time due to a [single global lock](https://lkml.org/lkml/2017/4/21/533) shared across the network namespace, so under high concurrency to create containers inside a host/VM the container startup time increases linearly as the number of concurrent creations.
 
 ## Solução
-O artigo tem como foco principal construir uma solução de *containerização* focada em aplicações *serverless* e um provisionador focado no carregamento proativo das bibliotecas mais utilizadas entre aplicações.
-
-Para diminuir o tempo de *Cold Start* da **etapa 2** foi criada uma solução de containerização com as seguintes melhorias:
-  1. SOCK utiliza *Bind Mounts* ao invés do AUFS para montar o sistema de arquivos, além disso, utiliza operações de */chroot* mais simples e eficientes.
-
-  2. SOCK faz a reutilização de *cgroups* e não aplica o *unshare* dos *namespaces* de *mount* e *network*.
-
-Para diminuir o tempo de *Cold Start* da **etapa 3** foi criado um sistema de provisionamento que pré-importa as bibliotecas de Python mais utilizadas pelas aplicações:
-  - Ideia do Zygote utilizado no Android para aplicações Java, que era utilizar cache para os pacotes mais utilizados, e dessa forma as aplicações fazem copy-on-write dos pacotes das bibliotecas, eliminando a necessidade de carregar os pacotes do disco e a duplicação de memória.
-  - Os processos das funções são filhos dos processos do Zygote que já possui algumas bibliotecas pre-importadas.
+The main idea of the paper solution is to pre-create and initialize network namespaces and share them to containers under its initialization. Sharing a pre-established network namespace to a container avoids the creation and initialization of a new network namespace during the container startup. 
 
 
 ## Avaliação e Resultados
