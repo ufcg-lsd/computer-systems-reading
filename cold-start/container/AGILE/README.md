@@ -14,16 +14,12 @@ The main idea of the paper solution is to pre-create and initialize network name
 To bring the idea to a serverless platform the paper proposes a pool management system - pause container pool manager (PCPM) that is responsible to create pause containers on the host/VM startup or configuration, attach and detach pause containers to function containers on startup and termination.
 
 ## Evaluation and Results
-To evaluate the proposed solution the authors implemented a PCPM-based OpenWhisk version and compare 
+The authors implemented a PCPM-based OpenWhisk and evaluate it under [1, 10, 20, 50, 80, 100] concurrent cold invocations, the results showed an 80% redution on cold start execution time when compared with the unmodified OpenWhisk version.
 
 ## Contribution
-
+SOCK already proposed a solution to avoid network namespace creation and initialization during container startup by not isolating the host and container network namespace, this decision may lead to security drawbacks. Therefore, PCPM does not require significant changes on the platform architecture design.
 
 ## Review
+The paper do not detail how the experiments were executed to obtain samples of cold start executions and lacks details on evaluation metrics.
 
-
-## Related Work
-1. [Pipsqueak: Lean Lambdas with Large Libraries] SOCK implements and extends the earlier Pipsqueak proposal for efficient package initialization.
-2. [Unikernels: Library Operating Systems for the Cloud] Recent alternatives to traditional containerization are based on library operating systems, enclaves, and unikernels.
-3. [Rethinking the Library OS from the Top Down] Recent alternatives to traditional containerization are based on library operating systems, enclaves, and unikernels.
-4. [From Zygote to Morula: Fortifying Weakened ASLR on Android] observed that forking many child processes from the same parent without calling exec undermines address-space randomization; their solution was Morula, a system that runs exec every time, but maintains a pool of preinitialized interpreters; this approach trades overall system throughput for randomization.
+The authors state that cold start is influenced just by the container startup and our findings showed the cold start also can be affected by the application startup.
