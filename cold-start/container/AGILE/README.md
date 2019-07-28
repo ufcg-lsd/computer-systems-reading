@@ -1,4 +1,6 @@
 # **[Agile Cold Starts for Scalable Serverless](https://www.usenix.org/system/files/hotcloud19-paper-mohan.pdf)**
+### 11th USENIX Workshop on Hot Topics in Cloud Computing
+Authors: ***Anup Mohan, Harshad Sane, Kshitij Doshi, Saikrishna Edupuganti, Naren Nayak, Vadim Sukhomlinov***
 
 ## Abstract
 The Serverless or Function-as-a-Service (FaaS) model capitalizes on lightweight execution by packaging code and dependencies together for just-in-time dispatch. Often a container environment has to be set up afresh – a condition called “coldstart", and in such cases, performance suffers and overheadsmount, both deteriorating  rapidly under high concurrency. Caching and reusing previously employed containers ties up memory and risks information leakage. Latency for cold starts is frequently due to work and wait-times in setting up various dependencies – such as in initializing networking elements. This paper proposes a solution that pre-crafts such resources and then dynamically reassociates them with baseline containers. Applied to networking, this approach demonstrates an order of magnitude gain in cold starts, negligible memory consumption, and flat startup time under rising concurrency.
