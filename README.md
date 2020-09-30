@@ -10,14 +10,17 @@ Send us a email to join the confcall (or wait on queue to be added to the [googl
     * when: [05/oct]
     * who: Paulo Feitosa
   
-2. TBD
+2. Serverless in the Wild: Characterizing and Optimizing the Serverless Workload at a Large Cloud Provider, USENIX ATC 2020
+   * when: [12/10]
+   * who: Matheus Lacerda
+
+3. TBD
    * when: TBD
    * who: TBD
 
 
 ### Backlog (be free to avoid it)
 
-* Serverless in the Wild: Characterizing and Optimizing the Serverless Workload at a Large Cloud Provider, USENIX ATC 2020
 * Twizzler: a Data-Centric OS for Non-Volatile Memory, USENIX ATC 2020
 * Platinum: A CPU-Efficient Concurrent Garbage Collector for Tail-Reduction of Interactive Services, USENIX ATC 2020
 * OPTIMUSCLOUD: Heterogeneous Configuration Optimization for Distributed Databases in the Cloud, USENIX ATC 2020
