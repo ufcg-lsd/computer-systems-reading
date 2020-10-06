@@ -9,6 +9,7 @@ Send us a email to join the confcall (or wait on queue to be added to the [googl
 1. Cadden, J., Unger, T., Awad, Y., Dong, H., Krieger, O., & Appavoo, J. SEUSS: skip redundant paths to make serverless fast. EuroSys 2020
     * when: [05/oct]
     * who: Paulo Feitosa
+    * preso: [link](https://docs.google.com/presentation/d/1jOMqBlnAhanPUS4p4aVZurtxKrPcRTlUp4fr8KiPmIY/edit?usp=sharing)
   
 2. Serverless in the Wild: Characterizing and Optimizing the Serverless Workload at a Large Cloud Provider, USENIX ATC 2020
    * when: [12/10]
