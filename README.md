@@ -2,7 +2,7 @@
 
 Paper trail for the UFCG/LSD reading group on systems.
 
-Send us a email to join the confcall (or wait on queue to be added to the [google meet](https://meet.google.com/vfd-deni-pbn)).
+Send us a email to join the confcall (via [google meet](https://meet.google.com/vfd-deni-pbn)).
 
 ## Current edition (2020.2)
 
