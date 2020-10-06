@@ -12,7 +12,7 @@ Send us a email to join the confcall (via [google meet](https://meet.google.com/
     * preso: [link](https://docs.google.com/presentation/d/1jOMqBlnAhanPUS4p4aVZurtxKrPcRTlUp4fr8KiPmIY/edit?usp=sharing)
   
 2. Serverless in the Wild: Characterizing and Optimizing the Serverless Workload at a Large Cloud Provider, USENIX ATC 2020
-   * when: [12/10]
+   * when: [13/10]
    * who: Matheus Lacerda
 
 3. TBD
