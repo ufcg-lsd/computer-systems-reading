@@ -15,9 +15,9 @@ Send us a email to join the confcall (via [google meet](https://meet.google.com/
    * when: [13/10]
    * who: Matheus Lacerda
 
-3. TBD
-   * when: TBD
-   * who: TBD
+3. Carver: Finding Important Parameters for Storage System Tuning, USENIX FAST 2020
+   * when: [20/oct]
+   * who: João Mafra
 
 
 ### Backlog (be free to avoid it)
