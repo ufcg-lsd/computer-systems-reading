@@ -19,7 +19,7 @@ Send us a email to join the confcall (via [google meet](https://meet.google.com/
    * when: [27/oct]
    * who: João Mafra
    
-4. [Read as Needed: Building WiSER, a Flash-Optimized Search Engine])https://www.usenix.org/system/files/fast20-he.pdf)
+4. [Read as Needed: Building WiSER, a Flash-Optimized Search Engine](https://www.usenix.org/system/files/fast20-he.pdf)
    * when: [10/nov]
    * who: Gabriel Tavares
 
