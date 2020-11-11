@@ -38,4 +38,6 @@ Send us a email to join the confcall (via [google meet](https://meet.google.com/
 * A Study of SSD Reliability in Large Scale Enterprise Storage Deployments, USENIX FAST 2020
 * Characterizing, Modeling, and Benchmarking RocksDB Key-Value Workloads at Facebook, USENIX FAST 2020
 * Strong and Efficient Consistency with Consistency-Aware Durability, USENIX FAST 2020
-
+* [OSDI 2020](https://www.usenix.org/conference/osdi20/technical-sessions)
+* [Eurosys 2020](https://www.eurosys2020.org/program-2/accepted-papers/)
+* [Mascots 2020](http://mascots.iitis.pl/?page_id=415)
