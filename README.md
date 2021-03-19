@@ -4,7 +4,11 @@ Paper trail for the UFCG/LSD reading group on systems.
 
 Send us a email to join the confcall (via [google meet](https://meet.google.com/vfd-deni-pbn)).
 
-## Current edition (2020.2)
+## Current edition (2021.1)
+
+## Previous editions
+
+### (2020.2)
 
 1. Cadden, J., Unger, T., Awad, Y., Dong, H., Krieger, O., & Appavoo, J. SEUSS: skip redundant paths to make serverless fast. EuroSys 2020
     * when: [05/oct]
@@ -23,7 +27,7 @@ Send us a email to join the confcall (via [google meet](https://meet.google.com/
    * when: [10/nov]
    * who: Gabriel Tavares
 
-### Backlog (be free to avoid it)
+## Backlog (be free to ignore it)
 
 * Twizzler: a Data-Centric OS for Non-Volatile Memory, USENIX ATC 2020
 * Platinum: A CPU-Efficient Concurrent Garbage Collector for Tail-Reduction of Interactive Services, USENIX ATC 2020
