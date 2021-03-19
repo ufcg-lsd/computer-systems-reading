@@ -32,7 +32,6 @@ Send us a email to join the confcall (via [google meet](https://meet.google.com/
 * POSH: A Data-Aware Shell, USENIX ATC 2020
 * DADI: Block-Level Image Service for Agile and Elastic Application Deployment, USENIX ATC 2020
 * MAPX: Controlled Data Migration in the Expansion of Decentralized Object-Based Storage Systems, USENIX FAST 2020
-* Carver: Finding Important Parameters for Storage System Tuning, USENIX FAST 2020
 * Uncovering Access, Reuse, and Sharing Characteristics of I/O-Intensive Files on Large-Scale Production HPC Systems, USENIX FAST 2020
 * GIFT: A Coupon Based Throttle-and-Reward Mechanism for Fair and Efficient I/O Bandwidth Management on Parallel Storage Systems, USENIX FAST 2020
 * A Study of SSD Reliability in Large Scale Enterprise Storage Deployments, USENIX FAST 2020
