@@ -4,7 +4,9 @@ Paper trail for the UFCG/LSD reading group on systems.
 
 Send us a email to join the confcall (via [google meet](https://meet.google.com/vfd-deni-pbn)).
 
-## Current edition (2021.1)
+## SOCC 2022
+
+https://acmsocc.org/2022/schedule.html
 
 ## Previous editions
 
