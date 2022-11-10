@@ -8,6 +8,10 @@ Send us a email to join the confcall (via [google meet](https://meet.google.com/
 
 https://acmsocc.org/2022/schedule.html
 
+1. [DeepScaling: microservices autoscaling for stable CPU utilization in large scale cloud systems.](https://dl.acm.org/doi/pdf/10.1145/3542929.3563469)
+    * when: TBD
+    * who: Ítallo Silva
+
 ## Previous editions
 
 ### (2020.2)
