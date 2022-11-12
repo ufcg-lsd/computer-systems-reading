@@ -12,6 +12,10 @@ https://acmsocc.org/2022/schedule.html
     * when: TBD
     * who: Ítallo Silva
 
+1. [How to Fight Production Incidents? An Empirical Study on a Large-scale Cloud Service.](https://dl.acm.org/doi/abs/10.1145/3542929.3563482)
+    * when: TBD
+    * who: Wesley Santos
+
 ## Previous editions
 
 ### (2020.2)
