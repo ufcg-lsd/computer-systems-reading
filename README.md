@@ -2,8 +2,6 @@
 
 Paper trail for the UFCG/LSD reading group on systems.
 
-Send us a email to join the confcall (via [google meet](https://meet.google.com/vfd-deni-pbn)).
-
 ## Caching 2023.2
 
 1. FIFO can be Better than LRU: the Power of Lazy Promotion and Quick Demotion
