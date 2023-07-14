@@ -4,6 +4,19 @@ Paper trail for the UFCG/LSD reading group on systems.
 
 Send us a email to join the confcall (via [google meet](https://meet.google.com/vfd-deni-pbn)).
 
+## Caching 2023.2
+
+1. FIFO can be Better than LRU: the Power of Lazy Promotion and Quick Demotion
+2. TinyLFU: A Highly Efficient Cache Admission Policy
+3. Probabilistic - The CacheLib Caching Engine: Design and Experiences at Scale
+4. ML Based - Flashield: a Hybrid Key-value Cache that Controls Flash Write Amplification
+5. The {CacheLib} Caching Engine: Design and Experiences at Scale.
+6. Flashield: a hybrid key-value cache that controls flash write amplification.
+7. Adaptive Online Cache Capacity Optimization via Lightweight Working Set Size Estimation at Scale.
+8. {FairRide}:{Near-Optimal}, fair cache sharing."
+9. CacheSack: Theory and Experience of Google’s Admission Optimization for Datacenter Flash Caches.
+10.  Flexible and efficient multi-tenant persistent memory caching." 
+
 ## SOCC 2022
 
 https://acmsocc.org/2022/schedule.html
