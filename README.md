@@ -12,6 +12,14 @@ Paper trail for the UFCG/LSD reading group on systems.
 6. [FairRide: Near-Optimal, Fair Cache Sharing](https://www.usenix.org/system/files/conference/nsdi16/nsdi16-paper-pu.pdf). Qifan Pu and Haoyuan Li, Matei Zaharia, Ali Ghodsi, Ion Stoica. USENIX 2016.
 7. [CacheSack: Theory and Experience of Google’s Admission Optimization for Datacenter Flash Caches](https://dl.acm.org/doi/pdf/10.1145/3582014). Tzu-Wei Yang, Seth Pollen, Mustafa Uysal, Arif Merchant, Homer Wolfmeister, and Junaid Khalid. ACM Trans 2023.
 8.  [Flexible and efficient multi-tenant persistent memory caching](https://www.usenix.org/system/files/fast22-wu.pdf). Kan Wu, Kaiwei Tu, Yuvraj Patel, Rathijit Sen, Kwanghyun Park, Andrea Arpaci-Dusseau, Remzi Arpaci-Dusseau. USENIX 2022.
+9.  [Memshare: a Dynamic Multi-tenant Key-value Cache](https://www.usenix.org/system/files/conference/atc17/atc17-cidon.pdf). Asaf Cidon, Daniel Rushton, Stephen M. Rumble, Ryan Stutsman. USENIX 2017.
+10. [dCat Dynamic Cache Management for Efficient, Performance-sensitive Infrastructure-as-a-Service](https://dl.acm.org/doi/pdf/10.1145/3190508.3190555). Cong Xu, Karthick Rajamani, Alexandre Ferreira, Wesley Felter, Juan Rubio, and Yang Li. EuroSys 2018.
+11. [Dynamic Partitioning of Shared Cache Memory](https://link.springer.com/article/10.1023/B:SUPE.0000014800.27383.8f). G. E. Suh, L. Rudolph & S. Devadas. The Journal of Supercomputing 2004.
+12. [An analytical model for cache replacement policy performance](https://dl.acm.org/doi/10.1145/1140103.1140304). Fei Guo, Yan Solihin. Association for Computing Machinery 2006.
+13. [Implementation of Multi-tenancy Adaptive CacheAdmission Model](https://iopscience.iop.org/article/10.1088/1742-6596/2026/1/012045/pdf). Huajun Maet al. Journal of Physics: Conference Series 2021.
+14. [Software-Defined Caching: Managing Caches in Multi-Tenant Data Centers](https://dl.acm.org/doi/10.1145/2806777.2806933). Ioan Stefanovici, Eno Thereska, Greg O’Shea, Bianca Schroeder, Hitesh Ballani, Thomas Karagiannis, Antony Rowstron, Tom Talpey. SoCC '15: Proceedings of the Sixth ACM Symposium on Cloud Computing 2015.
+15. [Move Fast and Meet Deadlines: Fine-grained Real-time Stream Processing with Cameo](https://www.usenix.org/system/files/nsdi21-xu.pdf). Le Xu, Shivaram Venkataraman, Indranil Gupta, Luo Mai, Rahul Potharaju. USENIX 2021.
+16. [Henge: Intent-driven Multi-Tenant Stream Processing](https://lexu1.web.engr.illinois.edu/files/henge-cr.pdf). Faria Kalim, Le Xu, Sharanya Bathey, Richa Meherwal, Indranil Gupta. SoCC '18: Proceedings of the ACM Symposium on Cloud Computing October 2018.
 
 ## SOCC 2022
 
