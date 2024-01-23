@@ -10,3 +10,9 @@ Paper trail for the UFCG/LSD reading group on systems.
 4. [HOTL: A Higher Order Theory of Locality](https://www.cs.rochester.edu/~cding/dpal/files/Xiang+_ASPLOS13.pdf). Xiaoya Xiang, Chen Ding, Hao Luo and Bin Bao. ASPLOS, 2013.
 5. [Internet Web servers: workload characterization and performance implications](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=649565). Martin F. Arlitt and Carey L. Williamson. IEEE/ACM Transactions on Networking, 1997.
 6. [Sieve is simpler than lru: an efficient turn-key eviction algorithm for web caches](https://www.pdl.cmu.edu/PDL-FTP/Storage/nsdi24-SIEVE.pdf). Yazhuo Zhang, Juncheng Yang, Yao Yue, Ymir Vigfusson and K. V. Rashmi. NSDI, 2024.
+
+[2023.2 Reading List](previous-papers/papers-23-2.md).
+
+[2020.2 Reading List](previous-papers/papers-20-2.md).
+
+[SOCC 2022](previous-papers/socc-22.md).
