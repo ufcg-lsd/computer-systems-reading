@@ -6,3 +6,4 @@
 4. [Memshare: a Dynamic Multi-tenant Key-value Cache](https://www.usenix.org/system/files/conference/atc17/atc17-cidon.pdf). Asaf Cidon, Daniel Rushton, Stephen M. Rumble, Ryan Stutsman. USENIX 2017.
 5. [FairRide: Near-Optimal, Fair Cache Sharing](https://www.usenix.org/system/files/conference/nsdi16/nsdi16-paper-pu.pdf). Qifan Pu and Haoyuan Li, Matei Zaharia, Ali Ghodsi, Ion Stoica. USENIX 2016.
 6. [Dynamically Sharing Memory between Memcached Tenants using Tingo](https://www.cs.uic.edu/~balajee/papers/tingo-conextw.pdf). AmirHossein Seyri, Abhisek Pan and Balajee Vamanan. CoNEXT, 2019.
+7. [Performance Isolation and Fairness for Multi-Tenant Cloud Storage](https://www.usenix.org/system/files/conference/osdi12/osdi12-final-215.pdf). David Shue, Michael J. Freedman and Anees Shaikh. USENIX 2012.
