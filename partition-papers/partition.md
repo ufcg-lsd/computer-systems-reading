@@ -9,3 +9,4 @@
 7. [Performance Isolation and Fairness for Multi-Tenant Cloud Storage](https://www.usenix.org/system/files/conference/osdi12/osdi12-final-215.pdf). David Shue, Michael J. Freedman and Anees Shaikh. USENIX 2012.
 8. [HUG: Multi-Resource Fairness for Correlated and Elastic Demands](https://www.usenix.org/conference/nsdi16/technical-sessions/presentation/chowdhury). Mosharaf Chowdhury, University of Michigan; Zhenhua Liu, Stony Brook University; Ali Ghodsi and Ion Stoica, University of California, Berkeley, and Databricks Inc. NSDI 2016.
 9. [Karma: Resource Allocation for Dynamic Demands](https://arxiv.org/pdf/2305.17222.pdf). Midhul Vuppalapati, Giannis Fikioris, Rachit Agarwal, Asaf Cidon, Anurag Khandelwal and Eva Tardos. USENIX OSDI, 2023.
+10. [A Survey of Techniques for Cache Partitioning in Multicore Processors](https://dl.acm.org/doi/abs/10.1145/3062394) Sparsh Mittal, Oak Ridge National Laboratory. Association for Computing Machinery, 2017.
